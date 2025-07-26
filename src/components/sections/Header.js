@@ -24,7 +24,7 @@ export default function Header({ isOpen, setIsOpen }) {
       className="fixed top-0 left-0 z-50 w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center bg-white"
     >
       {/* Name/Logo on the left */}
-      <div className="text-2xl font-bold tracking-tighter text-black">
+      <div className="text-3xl font-bold tracking-tighter text-black">
         Jazznelle Vince
       </div>
 
