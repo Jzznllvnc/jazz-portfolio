@@ -19,7 +19,7 @@ export default function HomeSection() {
   }, []);
 
   // Use a smaller spread value for mobile (40) and a larger one for desktop (70)
-  const spread = canHover ? 70 : 40;
+  const spread = canHover ? 70 : 35;
 
   return (
     <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black overflow-hidden px-8 pt-32">
