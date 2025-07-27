@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link'; // Import Link for client-side navigation
 
 // Animation for the container to fade in
 const overlayVariants = {
@@ -48,25 +49,39 @@ export default function MenuOverlay({ onClose }) {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed inset-0 z-40 bg-black text-white p-8"
+      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24"
     >
+      
       <motion.ul
         variants={listVariants}
         initial="hidden"
         animate="visible"
-        className="h-full flex flex-col justify-center items-center space-y-8"
+        className="pt-32 flex flex-col items-start space-y-8"
       >
         {navLinks.map((link, index) => (
-          <motion.li key={index} variants={itemVariants} className="overflow-hidden w-full text-center">
-            {/* Use a simple <a> tag for same-page scrolling */}
-            <a
+          <motion.li key={index} variants={itemVariants} className="overflow-hidden w-full">
+            <Link
               href={link.href}
               onClick={onClose}
-              className="text-6xl md:text-8xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400"
+              className="flex items-center gap-8 text-8xl md:text-9xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400"
             >
-              {link.title}
-            </a>
-            <div className="w-4/5 mx-auto h-px bg-gray-700 mt-4"></div>
+              <span className="font-abel">{link.title}</span>
+              {link.title === 'Home' && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5, ease: 'circOut' }}
+                >
+                  <img
+                    src="/images/gitprof.png"
+                    alt="Jazznelle Vince"
+                    className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover"
+                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/100x100/333/FFF?text=JV'; }}
+                  />
+                </motion.div>
+              )}
+            </Link>
+            <div className="w-full h-px bg-gray-700 mt-4"></div>
           </motion.li>
         ))}
       </motion.ul>

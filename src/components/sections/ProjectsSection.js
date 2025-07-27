@@ -7,6 +7,14 @@ import ProjectImage from '../ui/ProjectImage'; // Import the new component
 // Project data updated with a liveUrl for each project
 const projects = [
   {
+    title: 'SCRAPNEAR',
+    date: '01 / 2025',
+    tags: ['HTML5', 'Tailwind', 'Javascript', 'Leaflet.js', 'OpenStreetMap APIs'],
+    description: 'A simple community-based web app that aims to help users easily locate the nearest recycling centers near them.',
+    imageUrl: '/images/scrap.png',
+    liveUrl: 'https://scrapnear.vercel.app/', // Replace with your actual project link
+  },
+  {
     title: 'APPLIQ',
     date: '04 / 2025',
     tags: ['Javascript', 'Tailwind CSS', 'PHP', 'MySQL'],
@@ -15,19 +23,11 @@ const projects = [
     liveUrl: '#', // Replace with your actual project link
   },
   {
-    title: 'SCRAPNEAR',
-    date: '01 / 2025',
-    tags: ['HTML5', 'Tailwind', 'Javascript', 'Leaflet.js', 'OpenStreetMap APIs'],
-    description: 'A simple community-based web app that aims to help users easily locate the nearest recycling centers near them.',
-    imageUrl: '/images/scrapnear.png',
-    liveUrl: 'https://scrapnear.vercel.app/', // Replace with your actual project link
-  },
-  {
     title: 'CRAFTWISE',
     date: '02 / 2025',
     tags: ['HTML5', 'CSS3', 'Tailwind', 'Javascript', 'MySQL', 'Gemini API'],
     description: 'A dummy e-commerce web app exclusively for pc parts, with a chatbot.',
-    imageUrl: '/images/craftwise.png',
+    imageUrl: '/images/craft.png',
     liveUrl: 'https://craftwise.web1337.net/', // Replace with your actual project link
   },
   {
@@ -35,7 +35,7 @@ const projects = [
     date: '03 / 2025',
     tags: ['HTML5', 'CSS3', 'Javascript', 'Node.js', 'Gemini API'],
     description: 'An AI-powered tool to summarize content of documents (DOCx, PDFs, PPT.PPTx, Images).',
-    imageUrl: '/images/summup.png',
+    imageUrl: '/images/sum.png',
     liveUrl: 'https://summup-alpha.vercel.app/', // Replace with your actual project link
   }
 ];
@@ -64,25 +64,46 @@ const itemVariants = {
   },
 };
 
+const lineVariants = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: { duration: 0.8, ease: 'easeInOut' } },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } },
+};
+
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="w-full px-8 py-16 md:px-12 lg:px-24">
+    <section id="projects" className="w-full px-8 py-16 md:px-12 lg:px-24 pt-32">
       {/* Section Title */}
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.8 }}
+        transition={{ staggerChildren: 0.2 }}
         className="mb-16"
       >
         <div className="flex items-center mb-4">
-          <div className="w-12 h-px bg-gray-300"></div>
+          <motion.div 
+            className="w-[20%] h-[1.5px] bg-black"
+            variants={lineVariants}
+            style={{ originX: 0 }}
+          ></motion.div>
         </div>
-        <h2 className="text-7xl md:text-9xl font-bold tracking-tighter text-black uppercase">
+        <motion.h2 
+          className="text-7xl md:text-9xl font-bold font-abel tracking-tighter text-black uppercase"
+          variants={titleVariants}
+        >
           Projects
-        </h2>
+        </motion.h2>
         <div className="flex items-center mt-4">
-          <div className="w-full h-px bg-gray-300"></div>
+          <motion.div 
+            className="w-full h-px bg-black"
+            variants={lineVariants}
+            style={{ originX: 0 }}
+          ></motion.div>
         </div>
       </motion.div>
 
@@ -95,7 +116,7 @@ export default function ProjectsSection() {
         className="grid grid-cols-1 md:grid-cols-2 gap-16"
       >
         {projects.map((project, index) => (
-          <motion.div key={index} variants={itemVariants} className="flex flex-col">
+          <motion.div key={index} variants={itemVariants} className="flex flex-col group"> {/* Added 'group' for hover effects */}
             
             {/* Use the new ProjectImage component */}
             <div className="mb-6">
@@ -103,17 +124,21 @@ export default function ProjectsSection() {
             </div>
             
             {/* Project Info */}
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-8">
               <div className="flex items-center gap-3">
-                <h3 className="text-xl font-semibold tracking-tight text-black uppercase">{project.title}</h3>
+                <h3 className="relative text-xl font-semibold tracking-tight text-black uppercase">
+                  {project.title}
+                  {/* Underline effect on group hover */}
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
+                </h3>
                 <span className="text-gray-300">|</span>
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="group relative text-sm font-medium text-black">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="group/visit relative text-sm font-medium text-black">
                   <span className="flex items-center gap-1">
                     Visit
                     <svg
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover/visit:-translate-y-0.5 group-hover/visit:translate-x-0.5"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -124,7 +149,6 @@ export default function ProjectsSection() {
                       <line x1="5.3" y1="18.7" x2="17.1" y2="6.9" />
                     </svg>
                   </span>
-                  <span className="absolute -bottom-0.5 left-0 h-px w-full bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
                 </a>
               </div>
               <span className="text-sm text-gray-500">{project.date}</span>

@@ -29,25 +29,45 @@ const fadeInFromBottom = {
   },
 };
 
+const lineVariants = {
+  hidden: { scaleX: 0 },
+  visible: { scaleX: 1, transition: { duration: 0.8, ease: 'easeInOut' } },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } },
+};
+
 export default function ServicesSection() {
   return (
-    <section id="services" className="w-full px-8 py-24 md:px-12 lg:px-24 bg-white">
+    <section id="services" className="w-full px-8 py-24 md:px-12 lg:px-24 bg-white pt-32">
       {/* Section Title */}
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.8 }}
         className="mb-16"
       >
         <div className="flex items-center mb-4">
-          <div className="w-12 h-px bg-gray-300"></div>
+          <motion.div 
+            className="w-[20%] h-[2px] bg-black"
+            variants={lineVariants}
+            style={{ originX: 0 }}
+          ></motion.div>
         </div>
-        <h2 className="text-7xl md:text-9xl font-bold tracking-tighter text-black uppercase">
+        <motion.h2 
+          className="text-7xl md:text-9xl font-bold font-abel tracking-tighter text-black uppercase"
+          variants={titleVariants}
+        >
           Services
-        </h2>
+        </motion.h2>
         <div className="flex items-center mt-4">
-          <div className="w-full h-px bg-gray-300"></div>
+          <motion.div 
+            className="w-full h-px bg-black"
+            variants={lineVariants}
+            style={{ originX: 0 }}
+          ></motion.div>
         </div>
       </motion.div>
 

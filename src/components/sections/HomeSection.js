@@ -1,18 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-  'https://placehold.co/400x500/1a1a1a/FFFFFF?text=Image+1',
-  'https://placehold.co/400x500/3a3a3a/FFFFFF?text=Image+2',
-  'https://placehold.co/400x500/5a5a5a/FFFFFF?text=Image+3',
-  'https://placehold.co/400x500/7a7a7a/FFFFFF?text=Image+4',
+  '/images/app.png',
+  '/images/scrap.png',
+  '/images/craft.png',
+  '/images/sum.png',
 ];
 
 export default function HomeSection() {
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover)');
+    setCanHover(mediaQuery.matches);
+  }, []);
+
   return (
-    <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black overflow-hidden px-8">
+    // Added pt-24 to push content below the header
+    <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black overflow-hidden px-8 pt-32">
       {/* Main container for all content */}
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
         {/* Centered Title */}
@@ -30,7 +38,7 @@ export default function HomeSection() {
         </motion.h1>
 
         {/* This is the main content grid. */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-40 items-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-32 items-center">
           
           {/* Left Column: Location */}
           <motion.div
@@ -39,7 +47,7 @@ export default function HomeSection() {
             transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.4 }}
             className="w-full flex justify-center md:justify-end mb-8 md:mb-0"
           >
-             <p className="font-light tracking-tight text-center md:text-right">
+             <p className="font-light tracking-tight text-center md:text-left">
               <span className="text-2xl md:text-3xl">Manila</span>
               <br />
               {/* Increased font size for Philippines */}
@@ -56,25 +64,27 @@ export default function HomeSection() {
           >
             <motion.div
               className="relative w-64 h-80 md:w-80 md:h-96"
-              whileHover="hover"
+              whileHover={canHover ? "hover" : ""} // Only apply hover on desktop
+              animate={!canHover ? "hover" : "initial"} // Animate to 'hover' state by default on mobile
             >
               {images.map((src, index) => (
                 <motion.div
                   key={src}
                   className="absolute top-0 left-0 w-full h-full"
-                  initial={{ x: 0, y: 0, rotate: 0 }}
                   variants={{
-                    hover: {
+                    initial: { x: 0, y: 0, rotate: 0 },
+                    hover: { // The "spread" state
                       x: (index - 1.5) * 40,
                       rotate: (index - 1.5) * 5,
                       transition: { duration: 0.4, ease: 'easeOut' },
                     },
                   }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
                   <img
                     src={src}
                     alt={`Portfolio image ${index + 1}`}
-                    className="w-full h-full object-cover rounded-lg shadow-2xl"
+                    className="w-full h-full object-cover rounded-lg shadow-[0_8px_15px_5px_rgba(0,0,0,0.1)]"
                   />
                 </motion.div>
               ))}
