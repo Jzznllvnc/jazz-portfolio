@@ -18,9 +18,6 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
-        
-        {/* Use Next.js Script component for Tailwind */}
-        <Script src="https://cdn.tailwindcss.com" />
 
         {/* Custom Style definitions for your fonts */}
         <style>{`
