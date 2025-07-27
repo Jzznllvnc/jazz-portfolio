@@ -36,7 +36,7 @@ const lineVariants = {
 
 const titleVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.8 } },
+  visible: { opacity: 1, transition: { duration: 0.8, delay: 0.2 } },
 };
 
 export default function ServicesSection() {
@@ -86,10 +86,13 @@ export default function ServicesSection() {
           <p className="text-gray-600 mb-4 uppercase text-sm tracking-wider">
             Collaborate and create together something exceptional for your success.
           </p>
-          {/* "Currently Available" Pill */}
-          <span className="inline-block bg-gray-100 text-gray-700 text-xs font-medium uppercase tracking-wider rounded-full px-4 py-2">
-            Currently Available
-          </span>
+          {/* "Currently Available" Pill with Green Dot */}
+          <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
+            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+            <span className="text-gray-700 text-xs font-medium uppercase tracking-wider">
+              Currently Available
+            </span>
+          </div>
         </motion.div>
 
         {/* Right Column: List of Services - Increased spacing with space-y-24 */}

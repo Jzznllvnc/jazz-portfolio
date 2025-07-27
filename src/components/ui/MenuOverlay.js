@@ -59,12 +59,13 @@ export default function MenuOverlay({ onClose }) {
       >
         {navLinks.map((link, index) => (
           <motion.li key={index} variants={itemVariants} className="overflow-hidden w-full">
-            <div className="flex justify-between items-center">
-              <Link
-                href={link.href}
-                onClick={onClose}
-                className="flex items-center gap-8 text-8xl md:text-9xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400"
-              >
+            {/* The Link component now wraps the entire row */}
+            <Link
+              href={link.href}
+              onClick={onClose}
+              className="flex justify-between items-end w-full transition-colors hover:text-gray-400"
+            >
+              <div className="flex items-center gap-4 md:gap-8 text-8xl sm:text-8xl md:text-9xl font-bold tracking-tighter uppercase">
                 <span className="font-abel">{link.title}</span>
                 {link.title === 'Home' && (
                   <motion.div
@@ -75,14 +76,15 @@ export default function MenuOverlay({ onClose }) {
                     <img
                       src="/images/gitprof.png"
                       alt="Jazznelle Vince"
-                      className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover"
+                      className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full object-cover"
                       onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/100x100/333/FFF?text=JV'; }}
                     />
                   </motion.div>
                 )}
-              </Link>
-              <span className="font-mono text-gray-500 text-sm">[0{index + 1}]</span>
-            </div>
+              </div>
+              {/* Hidden on mobile (default), visible from md breakpoint up */}
+              <span className="hidden md:inline-block font-mono text-gray-500 text-sm mb-2">[0{index + 1}]</span>
+            </Link>
             <div className="w-full h-px bg-gray-700 mt-4"></div>
           </motion.li>
         ))}
