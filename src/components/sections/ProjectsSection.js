@@ -3,8 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ProjectImage from '../ui/ProjectImage'; // Import the new component
+import Link from 'next/link'; // Import Link for client-side navigation
 
-// Project data updated with a liveUrl for each project
+// Project data updated with a flag to distinguish internal vs. external links
 const projects = [
   {
     title: 'SCRAPNEAR',
@@ -12,8 +13,8 @@ const projects = [
     tags: ['HTML5', 'Tailwind', 'Javascript', 'Leaflet.js', 'OpenStreetMap APIs'],
     description: 'A simple community-based web app that aims to help users easily locate the nearest recycling centers near them.',
     imageUrl: '/images/scrap.png',
-    liveUrl: 'https://scrapnear.vercel.app/', // Replace with your actual project link
-    isInternal: false,
+    liveUrl: 'https://scrapnear.vercel.app/',
+    isInternal: false, // This is an external link
   },
   {
     title: 'APPLIQ',
@@ -21,7 +22,7 @@ const projects = [
     tags: ['Javascript', 'Tailwind CSS', 'PHP', 'MySQL'],
     description: 'A simple HR applicant management we did as small project at school.',
     imageUrl: '/images/appliq.png',
-    liveUrl: '/projects/appliq', // Replace with your actual project link
+    liveUrl: '/projects/appliq', // This is an internal link
     isInternal: true,
   },
   {
@@ -30,8 +31,8 @@ const projects = [
     tags: ['HTML5', 'CSS3', 'Tailwind', 'Javascript', 'MySQL', 'Gemini API'],
     description: 'A dummy e-commerce web app exclusively for pc parts, with a chatbot.',
     imageUrl: '/images/craft.png',
-    liveUrl: 'https://craftwise.web1337.net/', // Replace with your actual project link
-    isInternal: false,
+    liveUrl: 'https://craftwise.web1337.net/',
+    isInternal: false, // This is an external link
   },
   {
     title: 'SUMMUP',
@@ -39,8 +40,8 @@ const projects = [
     tags: ['HTML5', 'CSS3', 'Javascript', 'Node.js', 'Gemini API'],
     description: 'An AI-powered tool to summarize content of documents (DOCx, PDFs, PPT.PPTx, Images).',
     imageUrl: '/images/sum.png',
-    liveUrl: 'https://summup-alpha.vercel.app/', // Replace with your actual project link
-    isInternal: false,
+    liveUrl: 'https://summup-alpha.vercel.app/',
+    isInternal: false, // This is an external link
   }
 ];
 
@@ -50,7 +51,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.3, // This will make the cards appear one after another
+      staggerChildren: 0.3,
     },
   },
 };
@@ -136,24 +137,30 @@ export default function ProjectsSection() {
                   <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></span>
                 </h3>
                 <span className="text-gray-300">|</span>
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="group/visit relative text-sm font-medium text-black">
-                  <span className="flex items-center gap-1">
-                    Visit
-                    <svg
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover/visit:-translate-y-0.5 group-hover/visit:translate-x-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="18.7 12.4 18.7 5.3 11.6 5.3" />
-                      <line x1="5.3" y1="18.7" x2="17.1" y2="6.9" />
-                    </svg>
-                  </span>
-                </a>
+                
+                {/* Conditional Link/Anchor Tag */}
+                {project.isInternal ? (
+                  <Link href={project.liveUrl} className="group/visit relative text-sm font-medium text-black">
+                    <span className="flex items-center gap-1">
+                      Visit
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-300 ease-out group-hover/visit:-translate-y-0.5 group-hover/visit:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="18.7 12.4 18.7 5.3 11.6 5.3" />
+                        <line x1="5.3" y1="18.7" x2="17.1" y2="6.9" />
+                      </svg>
+                    </span>
+                  </Link>
+                ) : (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="group/visit relative text-sm font-medium text-black">
+                    <span className="flex items-center gap-1">
+                      Visit
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-300 ease-out group-hover/visit:-translate-y-0.5 group-hover/visit:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="18.7 12.4 18.7 5.3 11.6 5.3" />
+                        <line x1="5.3" y1="18.7" x2="17.1" y2="6.9" />
+                      </svg>
+                    </span>
+                  </a>
+                )}
+
               </div>
               <span className="text-sm text-gray-500">{project.date}</span>
             </div>
