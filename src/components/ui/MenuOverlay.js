@@ -49,9 +49,8 @@ export default function MenuOverlay({ onClose }) {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24"
+      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24" // Added padding to match header
     >
-      
       <motion.ul
         variants={listVariants}
         initial="hidden"
@@ -60,27 +59,30 @@ export default function MenuOverlay({ onClose }) {
       >
         {navLinks.map((link, index) => (
           <motion.li key={index} variants={itemVariants} className="overflow-hidden w-full">
-            <Link
-              href={link.href}
-              onClick={onClose}
-              className="flex items-center gap-8 text-8xl md:text-9xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400"
-            >
-              <span className="font-abel">{link.title}</span>
-              {link.title === 'Home' && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5, ease: 'circOut' }}
-                >
-                  <img
-                    src="/images/gitprof.png"
-                    alt="Jazznelle Vince"
-                    className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover"
-                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/100x100/333/FFF?text=JV'; }}
-                  />
-                </motion.div>
-              )}
-            </Link>
+            <div className="flex justify-between items-center">
+              <Link
+                href={link.href}
+                onClick={onClose}
+                className="flex items-center gap-8 text-8xl md:text-9xl font-bold tracking-tighter uppercase transition-colors hover:text-gray-400"
+              >
+                <span className="font-abel">{link.title}</span>
+                {link.title === 'Home' && (
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5, ease: 'circOut' }}
+                  >
+                    <img
+                      src="/images/gitprof.png"
+                      alt="Jazznelle Vince"
+                      className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover"
+                      onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/100x100/333/FFF?text=JV'; }}
+                    />
+                  </motion.div>
+                )}
+              </Link>
+              <span className="font-mono text-gray-500 text-sm">[0{index + 1}]</span>
+            </div>
             <div className="w-full h-px bg-gray-700 mt-4"></div>
           </motion.li>
         ))}
