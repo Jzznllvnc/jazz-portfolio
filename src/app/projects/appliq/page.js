@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/sections/Footer';
 
-// Images for the slider
 const projectImages = [
   { src: '/images/one.png' },
   { src: '/images/two.png' },
@@ -51,7 +50,6 @@ export default function AppliqPage() {
 
   return (
     <main className="bg-white text-black">
-      {/* Simplified Header for Project Page */}
       <header className="w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center">
         <div className="text-3xl font-bold tracking-tighter text-black leading-tight">
           Jazznelle
@@ -61,7 +59,6 @@ export default function AppliqPage() {
       </header>
 
       <section className="w-full px-8 py-16 md:py-8 md:px-12 lg:px-24">
-        {/* Image Slider Container */}
         <div className="relative max-w-6xl mx-auto flex flex-col items-center">
           <div className="relative w-full h-[400px] md:h-[600px] flex justify-center items-center">
             <button 
@@ -115,11 +112,10 @@ export default function AppliqPage() {
           </div>
         </div>
         
-        {/* About Work Section - Changed to animate on load */}
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-16 items-center mt-24"
           initial="hidden"
-          animate="visible" // Changed from whileInView
+          animate="visible"
           variants={fadeIn}
         >
           <div className="md:col-span-1">
@@ -128,12 +124,11 @@ export default function AppliqPage() {
           </div>
           <div className="md:col-span-2">
             <p className="text-3xl md:text-4xl font-light leading-tight">
-              I designed the HR applicant management system's whole frontend, as well as the logo.
+              I designed the HR applicant management system&apos;s whole frontend, as well as the logo.
             </p>
           </div>
         </motion.div>
 
-        {/* Back Button - Centered and resized */}
         <div className="flex justify-center mt-24">
           <Link href="/" className="group inline-block w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
             <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>

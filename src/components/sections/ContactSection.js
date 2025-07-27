@@ -70,7 +70,7 @@ export default function ContactSection() {
             ></motion.div>
           </div>
           <motion.h2 
-            className="text-7xl md:text-9xl font-bold font-abel tracking-tighter uppercase font-bitcount"
+            className="text-7xl md:text-9xl font-bold font-abel tracking-tighter uppercase"
             variants={titleVariants}
           >
             Contact
@@ -92,10 +92,10 @@ export default function ContactSection() {
             variants={fadeIn}
           >
             <h3 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight mb-6">
-              Have a project in mind? <br/> Let's create something amazing.
+              Have a project in mind? <br/> Let&apos;s create something amazing.
             </h3>
             <p className="text-lg text-gray-700 mb-8">
-              I'm currently available for freelance work and open to discussing new projects. Feel free to reach out using the form.
+              I&apos;m currently available for freelance work and open to discussing new projects. Feel free to reach out using the form.
             </p>
           </motion.div>
 
@@ -106,7 +106,7 @@ export default function ContactSection() {
             variants={fadeIn}
             className="bg-gray-100 p-8 rounded-lg"
           >
-            <h3 className="text-2xl font-bold mb-6 text-black">Let's Talk!</h3>
+            <h3 className="text-2xl font-bold mb-6 text-black">Let&apos;s Talk!</h3>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" name="name" placeholder="Name" className="w-full bg-white rounded-md p-3 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" required />

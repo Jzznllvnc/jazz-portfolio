@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import Script from 'next/script';
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,9 +19,10 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet" />
         
-        <script src="https://cdn.tailwindcss.com"></script>
+        {/* Use Next.js Script component for Tailwind */}
+        <Script src="https://cdn.tailwindcss.com" />
 
-        {/* Custom Style for the new font */}
+        {/* Custom Style definitions for your fonts */}
         <style>{`
           .font-abel {
             font-family: "Abel", sans-serif;

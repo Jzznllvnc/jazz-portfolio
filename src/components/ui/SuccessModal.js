@@ -15,7 +15,7 @@ const SuccessModal = ({ onClose }) => {
         <svg className="w-16 h-16 mx-auto mb-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <h2 className="text-3xl font-bold font-bitcount mb-4">Message Sent!</h2>
         <p className="text-lg text-gray-600 mb-8">
-          Thank you for reaching out. I'll get back to you shortly.
+          Thank you for reaching out. I&apos;ll get back to you shortly.
         </p>
         <button 
           onClick={onClose}
