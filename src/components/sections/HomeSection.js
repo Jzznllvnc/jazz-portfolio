@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
@@ -11,8 +11,15 @@ const images = [
 ];
 
 export default function HomeSection() {
-  // The spread value is now constant for all devices
-  const spread = 60;
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: hover)');
+    setCanHover(mediaQuery.matches);
+  }, []);
+
+  // Use a smaller spread value for mobile (40) and a larger one for desktop (70)
+  const spread = canHover ? 70 : 40;
 
   return (
     <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black overflow-hidden px-8 pt-32">
@@ -61,7 +68,7 @@ export default function HomeSection() {
                   className="absolute top-0 left-0 w-full h-full"
                   initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
                   animate={{
-                    x: (index - 1.5) * spread,
+                    x: (index - 1.5) * spread, // Using the dynamic spread value here
                     rotate: (index - 1.5) * 5,
                     opacity: 1
                   }}
