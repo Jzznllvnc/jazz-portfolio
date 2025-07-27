@@ -16,7 +16,7 @@ const ProjectImage = ({ imageUrl, altText }) => {
   if (canHover) {
     return (
       <motion.div
-        className="relative rounded-lg overflow-hidden h-[700px] bg-gray-100"
+        className="relative rounded-lg overflow-hidden h-[500px] bg-gray-100"
         whileHover="hover"
         initial="initial"
       >
