@@ -85,7 +85,7 @@ export default function HomeSection() {
             className="flex justify-center md:justify-start mt-8 md:mt-0"
           >
             <p className="max-w-xs text-sm text-gray-600 leading-relaxed text-center md:text-left">
-              An aspiring UI/UX designer from the Philippines, eager to create intuitive and visually engaging digital experiences. With a growing eye for detail and a user-focused mindset, I'm learning to turn complex challenges into functional, people-centered designs.
+              An aspiring UI/UX designer from the Philippines, eager to create intuitive and visually engaging digital experiences. With a growing eye for detail and a user-focused mindset, I&apos;m learning to turn complex challenges into functional, people-centered designs.
             </p>
           </motion.div>
         </div>
