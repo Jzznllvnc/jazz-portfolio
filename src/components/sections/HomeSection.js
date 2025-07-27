@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-  '/images/app.png',
-  '/images/scrap.png',
-  '/images/craft.png',
-  '/images/sum.png',
+  '/images/me2.jpeg',
+  '/images/random2.jpg',
+  '/images/random.jpg',
+  '/images/me.png',
 ];
 
 export default function HomeSection() {
@@ -28,7 +28,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
-          className="text-6xl md:text-8xl font-bold tracking-tighter uppercase leading-none text-center mb-16"
+          className="text-7xl md:text-8xl font-bold font-righteous tracking-wide uppercase leading-none text-center mb-16"
         >
           UI / UX
           <br />
