@@ -8,7 +8,7 @@ import ProjectImage from '../ui/ProjectImage'; // Import the new component
 const projects = [
   {
     title: 'SCRAPNEAR',
-    date: '01 / 2025',
+    date: '07 / 2025',
     tags: ['HTML5', 'Tailwind', 'Javascript', 'Leaflet.js', 'OpenStreetMap APIs'],
     description: 'A simple community-based web app that aims to help users easily locate the nearest recycling centers near them.',
     imageUrl: '/images/scrap.png',
@@ -24,7 +24,7 @@ const projects = [
   },
   {
     title: 'CRAFTWISE',
-    date: '02 / 2025',
+    date: '06 / 2025',
     tags: ['HTML5', 'CSS3', 'Tailwind', 'Javascript', 'MySQL', 'Gemini API'],
     description: 'A dummy e-commerce web app exclusively for pc parts, with a chatbot.',
     imageUrl: '/images/craft.png',
@@ -32,7 +32,7 @@ const projects = [
   },
   {
     title: 'SUMMUP',
-    date: '03 / 2025',
+    date: '06 / 2025',
     tags: ['HTML5', 'CSS3', 'Javascript', 'Node.js', 'Gemini API'],
     description: 'An AI-powered tool to summarize content of documents (DOCx, PDFs, PPT.PPTx, Images).',
     imageUrl: '/images/sum.png',
