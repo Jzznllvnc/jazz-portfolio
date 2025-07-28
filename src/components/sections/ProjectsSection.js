@@ -45,7 +45,7 @@ const projects = [
   }
 ];
 
-// Animation variants for the container of project cards
+// Animation variants for the container of project cards and individually
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -56,7 +56,6 @@ const containerVariants = {
   },
 };
 
-// Animation variants for each individual project card
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
   visible: {

@@ -95,7 +95,7 @@ export default function ServicesSection() {
           </div>
         </motion.div>
 
-        {/* Right Column: List of Services - Increased spacing with space-y-24 */}
+        {/* Right Column: List of Services */}
         <div className="space-y-24">
           {services.map((service, index) => (
             <motion.div

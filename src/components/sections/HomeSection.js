@@ -18,7 +18,7 @@ export default function HomeSection() {
     setCanHover(mediaQuery.matches);
   }, []);
 
-  // Use a smaller spread value for mobile (40) and a larger one for desktop (70)
+  // spread value for mobile (40) and a larger one for desktop (70)
   const spread = canHover ? 70 : 35;
 
   return (
@@ -52,7 +52,7 @@ export default function HomeSection() {
             </p>
           </motion.div>
 
-          {/* Center Column: Image Stack */}
+          {/* Image Stack */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -68,7 +68,7 @@ export default function HomeSection() {
                   className="absolute top-0 left-0 w-full h-full"
                   initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
                   animate={{
-                    x: (index - 1.5) * spread, // Using the dynamic spread value here
+                    x: (index - 1.5) * spread,
                     rotate: (index - 1.5) * 5,
                     opacity: 1
                   }}
@@ -84,7 +84,7 @@ export default function HomeSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: Description */}
+          {/* Paragraph description on the right*/}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}

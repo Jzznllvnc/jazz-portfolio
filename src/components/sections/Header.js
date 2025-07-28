@@ -23,14 +23,14 @@ export default function Header({ isOpen, setIsOpen }) {
       transition={{ duration: 0.8, ease: 'easeInOut' }}
       className="fixed top-0 left-0 z-50 w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center bg-white"
     >
-      {/* Name/Logo on the left */}
+      {/* Name on the left */}
       <div className="text-3xl font-bold tracking-tighter text-black leading-tight">
         Jazznelle
         <br />
         Vince
       </div>
 
-      {/* Menu button on the right with new hover effect */}
+      {/* Menu button on the right */}
       <motion.button
         aria-label="Toggle menu"
         onClick={() => setIsOpen(!isOpen)}

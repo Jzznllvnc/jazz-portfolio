@@ -33,7 +33,7 @@ export default function Home() {
         {isMenuOpen && <MenuOverlay onClose={() => setIsMenuOpen(false)} />}
       </AnimatePresence>
 
-      {/* All sections are now on one page */}
+      {/* All sections are in one page */}
       <HomeSection />
       <ProjectsSection />
       <ServicesSection />

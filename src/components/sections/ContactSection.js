@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import SuccessModal from '../ui/SuccessModal'; // Import the new success modal
+import SuccessModal from '../ui/SuccessModal';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
