@@ -7,12 +7,10 @@ const ProjectImage = ({ imageUrl, altText }) => {
   const [canHover, setCanHover] = useState(false);
 
   useEffect(() => {
-    // This check runs on the client and sets canHover to true only on devices that support hover.
     const mediaQuery = window.matchMedia('(hover: hover)');
     setCanHover(mediaQuery.matches);
   }, []);
 
-  // If the device supports hover, render the animated version.
   if (canHover) {
     return (
       <motion.div
@@ -26,7 +24,7 @@ const ProjectImage = ({ imageUrl, altText }) => {
           className="absolute inset-0 w-full h-full object-cover"
           variants={{
             initial: { scale: 1 },
-            hover: { scale: 1.1 }, // Zoom effect
+            hover: { scale: 1.1 },
           }}
           transition={{ duration: 0.7, ease: 'easeInOut' }}
           onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Error'; }}
@@ -35,7 +33,6 @@ const ProjectImage = ({ imageUrl, altText }) => {
     );
   }
 
-  // Otherwise, for touch devices, render a simple, non-animated, full-color image.
   return (
     <div className="relative rounded-lg overflow-hidden h-[500px] bg-gray-100">
       <img

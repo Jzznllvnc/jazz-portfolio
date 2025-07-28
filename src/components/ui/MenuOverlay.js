@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link'; // Import Link for client-side navigation
+import Link from 'next/link';
 
 // Animation for the container to fade in
 const overlayVariants = {
@@ -34,7 +34,6 @@ const itemVariants = {
   },
 };
 
-// Updated navigation links to scroll to sections
 const navLinks = [
   { title: 'Home', href: '#home' },
   { title: 'Projects', href: '#projects' },
@@ -49,7 +48,7 @@ export default function MenuOverlay({ onClose }) {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24" // Added padding to match header
+      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24"
     >
       <motion.ul
         variants={listVariants}
