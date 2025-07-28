@@ -28,7 +28,7 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
-          className="text-7xl md:text-8xl font-bold font-righteous tracking-wide uppercase leading-none text-center mb-16"
+          className="text-7xl md:text-8xl font-bold font-righteous uppercase leading-none text-center mb-16"
         >
           UI / UX
           <br />
