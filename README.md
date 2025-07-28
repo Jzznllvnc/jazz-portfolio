@@ -1,8 +1,8 @@
 # ✦ Built using [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com/), and [Framer Motion](https://motion.dev/).
 
-## © Design layout heavily inspired from: https://preview.studio.site/templates/gBRO381qDm/
+© Design layout heavily inspired from: https://preview.studio.site/templates/gBRO381qDm/
 
-### Getting Started Locally
+### ≻ &nbsp;Getting Started Locally
 
 To run this project on your own machine, follow these steps:
 
@@ -31,12 +31,22 @@ To run this project on your own machine, follow these steps:
     ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 ---
 
-### Deploy on Vercel (or your choice)
+### ≻ &nbsp;Contact Form Setup
+The contact form uses Web3Forms. To make it work in your local environment or your own deployment, you will need to:
+
+1. **Go to web3forms.com and get your own free access key.**
+   
+2. **In src/components/sections/ContactSection.js, replace the placeholder value in the handleSubmit function with your own key:**
+
+         formData.append("access_key", "YOUR_NEW_ACCESS_KEY_HERE");
+
+---
+
+### ≻ &nbsp;Deploy on Vercel (or your choice)
 
 I deployed this on [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 
