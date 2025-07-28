@@ -34,7 +34,7 @@ export default function Header({ isOpen, setIsOpen }) {
       <motion.button
         aria-label="Toggle menu"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 bg-black rounded-full flex flex-col justify-center items-center space-y-1.5 group transition-colors duration-300 hover:bg-[#00ffcc]"
+        className="w-14 h-14 bg-black rounded-full flex flex-col justify-center items-center space-y-1.5 group transition-colors duration-300 hover:bg-[#00ffcc]"
         animate={isOpen ? 'open' : 'closed'}
       >
         <motion.span
