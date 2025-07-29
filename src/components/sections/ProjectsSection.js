@@ -91,7 +91,7 @@ export default function ProjectsSection() {
       >
         <div className="flex items-center mb-4">
           <motion.div 
-            className="w-[20%] h-[1.5px] bg-black"
+            className="w-[20%] h-[2px] bg-black"
             variants={lineVariants}
             style={{ originX: 0 }}
           ></motion.div>
@@ -104,7 +104,7 @@ export default function ProjectsSection() {
         </motion.h2>
         <div className="flex items-center mt-4">
           <motion.div 
-            className="w-full h-px bg-black"
+            className="w-full h-[2px] bg-black"
             variants={lineVariants}
             style={{ originX: 0 }}
           ></motion.div>

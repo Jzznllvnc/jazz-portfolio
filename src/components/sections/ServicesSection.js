@@ -64,7 +64,7 @@ export default function ServicesSection() {
         </motion.h2>
         <div className="flex items-center mt-4">
           <motion.div 
-            className="w-full h-px bg-black"
+            className="w-full h-[2px] bg-black"
             variants={lineVariants}
             style={{ originX: 0 }}
           ></motion.div>
