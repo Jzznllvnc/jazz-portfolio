@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SuccessModal from '../ui/SuccessModal';
 
+// Animation variants from your original file
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
@@ -27,35 +28,47 @@ const titleVariants = {
 };
 
 export default function ContactSection() {
+  // State for the success modal and loading status
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  // Function to handle form submission by calling our API route
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
+
     const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
 
-    formData.append("access_key", "02ea7f58-7639-4d97-a554-e69373c29cbd"); // Replace with your key
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+          'Content-Type': 'application/json',
         },
-        body: json
-    });
-    const result = await response.json();
-    if (result.success) {
-        setIsSuccess(true);
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true); // Trigger your existing SuccessModal
         event.target.reset();
+      } else {
+        // Handle server errors
+        console.error('Failed to send message.');
+        alert('An error occurred, please try again.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      alert('An error occurred, please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <>
       <section id="contact" className="relative w-full px-8 py-24 md:px-12 lg:px-24 bg-white text-black">
+        {/* All your animations and layout are preserved */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -107,6 +120,7 @@ export default function ContactSection() {
             className="bg-gray-100 p-8 rounded-lg"
           >
             <h3 className="text-2xl font-bold mb-6 text-black">Let&apos;s Talk!</h3>
+            {/* The form now calls the new handleSubmit function */}
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" name="name" placeholder="Name" className="w-full bg-white rounded-md p-3 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" required />
@@ -114,14 +128,19 @@ export default function ContactSection() {
               </div>
               <input type="tel" name="phone" placeholder="Phone (Optional)" className="w-full bg-white rounded-md p-3 mt-4 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" />
               <textarea name="message" placeholder="Message" rows="4" className="w-full bg-white rounded-md p-3 mt-4 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" required></textarea>
-              <button type="submit" className="w-full bg-black text-white font-bold py-3 mt-4 rounded-md transition-transform hover:scale-105 hover:bg-gray-800">
-                Send Message
+              <button 
+                type="submit" 
+                className="w-full bg-black text-white font-bold py-3 mt-4 rounded-md transition-transform hover:scale-105 hover:bg-gray-800 disabled:bg-gray-500 disabled:scale-100"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </motion.div>
         </div>
       </section>
 
+      {/* Your SuccessModal logic remains unchanged */}
       <AnimatePresence>
         {isSuccess && <SuccessModal onClose={() => setIsSuccess(false)} />}
       </AnimatePresence>
