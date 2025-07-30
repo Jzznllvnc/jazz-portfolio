@@ -8,7 +8,7 @@ const emailHtmlToOwner = ({ name, email, phone, message }) => `
     </div>
 
     <div>
-      <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/screenshot.png" alt="Portfolio Screenshot" style="width: 100%; height: auto; display: block; max-width: 600px;">
+      <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/screenshot.png" alt="Portfolio Screenshot" style="width: 50%; height: auto; display: block; max-width: 600px;">
     </div>
 
     <div style="padding: 30px;">
