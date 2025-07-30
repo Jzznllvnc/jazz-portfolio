@@ -36,13 +36,32 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 ---
 
 ### ≻ &nbsp;Contact Form Setup
-The contact form uses Web3Forms. To make it work in your local environment or your own deployment, you will need to:
 
-1. **Go to web3forms.com and get your own free access key.**
-   
-2. **In src/components/sections/ContactSection.js, replace the placeholder value in the handleSubmit function with your own key:**
+The contact form is powered by a custom Next.js API route that uses **Nodemailer** to send emails via a Gmail account. To make it work, you need to set up environment variables.
 
-         formData.append("access_key", "YOUR_NEW_ACCESS_KEY_HERE");
+1.  **Create an environment file:**
+
+    In the root of your project, create a file named `.env.local`.
+
+2.  **Add your credentials to the file:**
+
+    Copy the following into your `.env.local` file and replace the placeholders with your actual Gmail address and a Google App Password.
+
+    ```bash
+    GMAIL_EMAIL=your_email@gmail.com
+    GMAIL_APP_PASSWORD=your_16_digit_app_password
+    ```
+
+3.  **How to get a Google App Password:**
+
+    * Go to your Google Account at [myaccount.google.com](https://myaccount.google.com).
+    * Navigate to the **Security** tab.
+    * Make sure **2-Step Verification** is turned on. You cannot create App Passwords without it.
+    * Click on **App passwords** (you may need to sign in again).
+    * Under "Select app," choose **Other (Custom name)**, name it something like "Portfolio Contact Form," and click **Generate**.
+    * Google will give you a 16-digit password. Copy this password (without spaces) and paste it as the value for `GMAIL_APP_PASSWORD`.
+
+The backend logic that handles this form is located in `app/api/contact/route.js`.
 
 ---
 
