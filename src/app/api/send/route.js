@@ -6,6 +6,11 @@ const emailHtmlToOwner = ({ name, email, phone, message }) => `
     <div style="background-color: #000000; padding: 20px; text-align: center;">
       <h1 style="color: white; margin: 0; font-size: 24px;">New Contact Form Submission</h1>
     </div>
+
+    <div>
+      <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/screenshot.png" alt="Portfolio Screenshot" style="width: 100%; height: auto; display: block; max-width: 600px;">
+    </div>
+
     <div style="padding: 30px;">
       <p style="font-size: 16px; color: #333; margin-bottom: 20px;">You've received a new message from your portfolio website:</p>
       
