@@ -2,16 +2,19 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link'; // Import the Link component
 
 // Data for the services you offer
 const services = [
   {
     title: 'Website Design',
     description: 'Creative and fully responsive website designs created from scratch with attention to every detail. Each project is created with user experience best practices and customized animations in mind.',
+    link: '/services/website-design' // Add a link property for this service
   },
   {
-    title: 'Branding',
+    title: 'Brand Identity',
     description: 'Developing strong brand identities that resonate with the target audience. This includes logo design, color palettes, typography, and overall brand guidelines to ensure consistency.',
+    link: '/services/brand-identity' // Add a link property for this service
   },
   // You can add more services here
 ];
@@ -45,8 +48,7 @@ export default function ServicesSection() {
       {/* Section Title */}
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
+        animate="visible"
         className="mb-16"
       >
         <div className="flex items-center mb-4">
@@ -76,8 +78,7 @@ export default function ServicesSection() {
         {/* Left Column: Introductory Text */}
         <motion.div
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          animate="visible"
           variants={fadeInFromBottom}
         >
           <h3 className="text-3xl font-semibold leading-tight tracking-tight mb-6">
@@ -101,8 +102,7 @@ export default function ServicesSection() {
             <motion.div
               key={index}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
+              animate="visible"
               variants={fadeInFromBottom}
               className="border-b border-gray-200 pb-8"
             >
@@ -118,10 +118,16 @@ export default function ServicesSection() {
                 <p className="text-gray-700 leading-relaxed">
                   {service.description}
                 </p>
-                {/* Animated Plus Button */}
-                <button className="group flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
-                  <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v12m6-6H6"></path></svg>
-                </button>
+                {/* Conditionally render a Link or a button */}
+                {service.link ? (
+                  <Link href={service.link} className="group flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
+                      <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v12m6-6H6"></path></svg>
+                  </Link>
+                ) : (
+                  <button className="group flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
+                    <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v12m6-6H6"></path></svg>
+                  </button>
+                )}
               </div>
             </motion.div>
           ))}
