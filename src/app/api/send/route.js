@@ -4,11 +4,11 @@ import nodemailer from 'nodemailer';
 const emailHtmlToOwner = ({ name, email, phone, message }) => `
   <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
     <div style="background-color: #000000; padding: 20px; text-align: center;">
-      <h1 style="color: white; margin: 0; font-size: 24px;">New Contact Form Submission</h1>
+      <h1 style="color: white; margin: 0; font-size: 24px;">Someone's Interested In Your Work</h1>
     </div>
 
     <div>
-      <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/screenshot.png" alt="Portfolio Screenshot" style="width: 100%; height: auto; display: block; max-width: 600px;">
+      <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/toowner.png" alt="Portfolio Screenshot" style="width: 100%; height: auto; display: block; max-width: 600px;">
     </div>
 
     <div style="padding: 30px;">
@@ -47,6 +47,10 @@ const emailHtmlToUser = ({ name }) => `
     <div style="max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
         <div style="background-color: #000000; padding: 20px; text-align: center;">
             <h1 style="color: white; margin: 0; font-size: 24px; line-height: 1.4;">Thank You for Reaching Out!</h1>
+        </div>
+
+        <div>
+          <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/touser.png" alt="Thank You" style="width: 100%; height: auto; display: block; max-width: 600px;">
         </div>
         
         <div style="padding: 30px; background-color: #ffffff;">
