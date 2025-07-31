@@ -3,14 +3,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '@/components/sections/Footer';
 
 const projectImages = [
-  { src: '/images/one.png' },
-  { src: '/images/two.png' },
-  { src: '/images/three.png' },
-  { src: '/images/four.png' },
-  { src: '/images/five.png' },
+  { src: '/images/one.png', width: 1562, height: 791 },
+  { src: '/images/two.png', width: 229, height: 327 },
+  { src: '/images/three.png', width: 143, height: 134 },
+  { src: '/images/four.png', width: 1304, height: 648 },
+  { src: '/images/five.png', width: 992, height: 814 },
 ];
 
 const sliderVariants = {
@@ -30,6 +31,7 @@ const sliderVariants = {
   }),
 };
 
+// Animation for content fading in
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.1 } },
@@ -58,8 +60,16 @@ export default function AppliqPage() {
         </div>
       </header>
 
-      <section className="w-full px-8 py-16 md:py-8 md:px-12 lg:px-24">
-        <div className="relative max-w-6xl mx-auto flex flex-col items-center">
+      <motion.section 
+        className="w-full px-8 py-16 md:py-8 md:px-12 lg:px-24"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+      >
+        <motion.div 
+          className="relative max-w-6xl mx-auto flex flex-col items-center"
+          variants={fadeIn}
+        >
           <div className="relative w-full h-[400px] md:h-[600px] flex justify-center items-center">
             <button 
               onClick={() => paginate(-1)} 
@@ -83,11 +93,14 @@ export default function AppliqPage() {
                   }}
                   className="absolute w-full h-full p-4 md:p-8"
                 >
-                  <div className="bg-[#333333] w-full h-full rounded-lg flex justify-center items-center p-4">
-                    <img
+                  <div className="bg-black w-full h-full rounded-xl flex justify-center items-center p-4">
+                    <Image
                       src={projectImages[page].src}
                       alt={`APPLIQ project image ${page + 1}`}
-                      className="max-w-full max-h-full rounded-xl object-contain"
+                      width={projectImages[page].width}
+                      height={projectImages[page].height}
+                      className="max-w-full h-auto max-h-full rounded-xl object-contain"
+                      priority={page === 0}
                     />
                   </div>
                 </motion.div>
@@ -110,12 +123,10 @@ export default function AppliqPage() {
                   <svg className="w-6 h-6 text-black transition-colors duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
               </button>
           </div>
-        </div>
+        </motion.div>
         
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-16 items-center mt-24"
-          initial="hidden"
-          animate="visible"
           variants={fadeIn}
         >
           <div className="md:col-span-1">
@@ -134,7 +145,7 @@ export default function AppliqPage() {
             <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
           </Link>
         </div>
-      </section>
+      </motion.section>
 
       <Footer />
     </main>

@@ -1,11 +1,10 @@
-'use client'; // This directive is needed for components with interactivity
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import ProjectImage from '../ui/ProjectImage';
 import Link from 'next/link';
 
-// Project data updated with a flag to distinguish internal vs. external links
 const projects = [
   {
     title: 'SCRAPNEAR',
@@ -14,7 +13,7 @@ const projects = [
     description: 'A simple community-based web app that aims to help users easily locate the nearest recycling centers near them.',
     imageUrl: '/images/scrap.png',
     liveUrl: 'https://scrapnear.vercel.app/',
-    isInternal: false, // This is an external link
+    isInternal: false,
   },
   {
     title: 'APPLIQ',
@@ -22,7 +21,7 @@ const projects = [
     tags: ['Javascript', 'Tailwind CSS', 'PHP', 'MySQL'],
     description: 'A simple HR applicant management we did as small project at school.',
     imageUrl: '/images/appliq.png',
-    liveUrl: '/projects/appliq', // This is an internal link
+    liveUrl: '/projects/appliq',
     isInternal: true,
   },
   {
@@ -32,7 +31,7 @@ const projects = [
     description: 'A dummy e-commerce web app exclusively for pc parts, with a chatbot.',
     imageUrl: '/images/craft.png',
     liveUrl: 'https://craftwise.web1337.net/',
-    isInternal: false, // This is an external link
+    isInternal: false,
   },
   {
     title: 'SUMMUP',
@@ -41,11 +40,11 @@ const projects = [
     description: 'An AI-powered tool to summarize content of documents (DOCx, PDFs, PPT.PPTx, Images).',
     imageUrl: '/images/sum.png',
     liveUrl: 'https://summup-alpha.vercel.app/',
-    isInternal: false, // This is an external link
+    isInternal: false,
   }
 ];
 
-// Animation variants for the container of project cards and individually
+// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -123,7 +122,11 @@ export default function ProjectsSection() {
           <motion.div key={index} variants={itemVariants} className="flex flex-col group">
             
             <div className="relative mb-6">
-              <ProjectImage imageUrl={project.imageUrl} altText={project.title} />
+              <ProjectImage 
+                imageUrl={project.imageUrl} 
+                altText={project.title}
+                priority={index < 2}
+              />
               
               <div className="absolute top-4 right-4 z-10">
                 {project.isInternal ? (

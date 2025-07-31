@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-const ProjectImage = ({ imageUrl, altText }) => {
+const ProjectImage = ({ imageUrl, altText, priority = false }) => {
   const [canHover, setCanHover] = useState(false);
 
   useEffect(() => {
@@ -11,35 +12,45 @@ const ProjectImage = ({ imageUrl, altText }) => {
     setCanHover(mediaQuery.matches);
   }, []);
 
+  // Variants for the image scale animation
+  const imageScaleVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.1 },
+  };
+
   if (canHover) {
     return (
-      <motion.div
-        className="relative rounded-lg overflow-hidden h-[700px] bg-gray-100"
-        whileHover="hover"
-        initial="initial"
-      >
-        <motion.img
-          src={imageUrl}
-          alt={altText}
-          className="absolute inset-0 w-full h-full object-cover"
-          variants={{
-            initial: { scale: 1 },
-            hover: { scale: 1.1 },
-          }}
+      <div className="rounded-lg overflow-hidden h-[350px] md:h-[500px] bg-gray-100">
+        <motion.div
+          className="relative w-full h-full"
+          variants={imageScaleVariants}
+          initial="initial"
+          whileHover="hover"
           transition={{ duration: 0.7, ease: 'easeInOut' }}
-          onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Error'; }}
-        />
-      </motion.div>
+        >
+          <Image
+            src={imageUrl}
+            alt={altText}
+            fill
+            priority={priority}
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </motion.div>
+      </div>
     );
   }
 
+  // Fallback for non-hover devices
   return (
-    <div className="relative rounded-lg overflow-hidden h-[500px] bg-gray-100">
-      <img
+    <div className="relative rounded-lg overflow-hidden bg-gray-100 h-[350px] md:h-[500px]">
+      <Image
         src={imageUrl}
         alt={altText}
-        className="w-full h-full object-cover"
-        onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/CCCCCC/FFFFFF?text=Image+Error'; }}
+        fill
+        priority={priority}
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
     </div>
   );

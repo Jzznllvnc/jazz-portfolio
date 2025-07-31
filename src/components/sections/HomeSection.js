@@ -18,7 +18,7 @@ export default function HomeSection() {
     setCanHover(mediaQuery.matches);
   }, []);
 
-  // spread value for mobile (40) and a larger one for desktop (70)
+  // Image spread
   const spread = canHover ? 70 : 35;
 
   return (

@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 // Black and white email template for the site owner
-const emailHtmlToOwner = ({ name, email, phone, message }) => `
+const emailHtmlToOwner = ({ name, email, phone, message, service }) => `
   <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
     <div style="background-color: #000000; padding: 20px; text-align: center;">
       <h1 style="color: white; margin: 0; font-size: 24px;">Someone's Interested In Your Work</h1>
@@ -18,6 +18,7 @@ const emailHtmlToOwner = ({ name, email, phone, message }) => `
         <p style="margin: 0 0 15px 0;"><strong style="color: #000000; display: inline-block; width: 80px;">Name:</strong> ${name}</p>
         <p style="margin: 0 0 15px 0;"><strong style="color: #000000; display: inline-block; width: 80px;">Email:</strong> <a href="mailto:${email}" style="color: #000000; text-decoration: none;">${email}</a></p>
         ${phone ? `<p style="margin: 0 0 15px 0;"><strong style="color: #000000; display: inline-block; width: 80px;">Phone:</strong> <a href="tel:${phone}" style="color: #000000; text-decoration: none;">${phone}</a></p>` : ''}
+        <p style="margin: 0 0 15px 0;"><strong style="color: #000000; display: inline-block; width: 80px;">Service:</strong> ${service}</p>
         <p style="margin: 0;"><strong style="color: #000000; display: inline-block; width: 80px;">Message:</strong></p>
         <div style="margin-top: 10px; padding: 15px; background-color: white; border-radius: 4px; border-left: 3px solid #000000;">
           ${message}
@@ -86,7 +87,7 @@ const emailHtmlToUser = ({ name }) => `
 
 export async function POST(request) {
   try {
-    const { name, email, phone, message } = await request.json();
+    const { name, email, phone, message, service } = await request.json();
 
     // Create a transporter object using the Gmail SMTP transport
     const transporter = nodemailer.createTransport({
@@ -102,7 +103,7 @@ export async function POST(request) {
       from: `"Portfolio Contact" <${process.env.GMAIL_EMAIL}>`,
       to: process.env.GMAIL_EMAIL, // Send to your own email
       subject: `New Message from ${name}`,
-      html: emailHtmlToOwner({ name, email, phone, message }),
+      html: emailHtmlToOwner({ name, email, phone, message, service }),
     };
 
     // 2. Send the auto-reply confirmation email to the user

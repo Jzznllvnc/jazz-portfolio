@@ -48,7 +48,6 @@ export default function MenuOverlay({ onClose }) {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      // hide the scrollbar
       className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24 overflow-y-auto no-scrollbar"
     >
       {/* hidden scrollbar across different browsers */}
