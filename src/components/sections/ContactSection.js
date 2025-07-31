@@ -136,7 +136,7 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={fadeIn}>
             <h3 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight mb-6">
-              Have a project in mind or need tech help? <br/> I&apos;d be glad to help.
+              Have a project in mind or need tech help? <br/> I&apos;m here for it.
             </h3>
             <p className="text-lg text-gray-700 mb-8">
               I&apos;m currently available for freelance work and open to discussing new projects, as well as techinical services. Feel free to reach out using the form.
