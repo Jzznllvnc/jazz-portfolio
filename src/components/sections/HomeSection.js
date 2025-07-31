@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const images = [
-  '/images/me2.png',
-  '/images/random2.jpg',
-  '/images/random.jpg',
-  '/images/me.png',
+  { src: '/images/me2.png', alt: 'Pixelated portrait', width: 731, height: 758 },
+  { src: '/images/random2.jpg', alt: 'Abstract circular art', width: 768, height: 1086 },
+  { src: '/images/random.jpg', alt: 'Abstract blurry portrait', width: 727, height: 727 },
+  { src: '/images/me.png', alt: 'Profile silhouette', width: 3672, height: 3672 },
 ];
 
 export default function HomeSection() {
@@ -62,10 +63,10 @@ export default function HomeSection() {
             <div
               className="relative w-64 h-80 md:w-80 md:h-96"
             >
-              {images.map((src, index) => (
+              {images.map((image, index) => (
                 <motion.div
-                  key={src}
-                  className="absolute top-0 left-0 w-full h-full"
+                  key={image.src}
+                  className="absolute top-0 left-0 w-full h-full shadow-[0_20px_25px_15px_rgba(0,0,0,0.12)] rounded-lg overflow-hidden"
                   initial={{ x: 0, y: 0, rotate: 0, opacity: 0 }}
                   animate={{
                     x: (index - 1.5) * spread,
@@ -74,10 +75,14 @@ export default function HomeSection() {
                   }}
                   transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 + index * 0.1 }}
                 >
-                  <img
-                    src={src}
-                    alt={`Portfolio image ${index + 1}`}
-                    className="w-full h-full object-cover rounded-lg shadow-[0_20px_25px_15px_rgba(0,0,0,0.12)]"
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="w-full h-full object-cover"
+                    priority={index === 0}
+                    sizes="(max-width: 768px) 256px, 320px"
                   />
                 </motion.div>
               ))}
