@@ -123,7 +123,7 @@ export default function AppliqPage() {
             <h2 className="text-2xl font-semibold tracking-tight uppercase">APPLIQ</h2>
           </div>
           <div className="md:col-span-2">
-            <p className="text-3xl md:text-4xl font-light leading-tight">
+            <p className="text-xl md:text-2xl font-light leading-tight">
               I designed the HR applicant management system&apos;s whole frontend, as well as the logo.
             </p>
           </div>

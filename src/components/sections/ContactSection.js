@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SuccessModal from '../ui/SuccessModal';
 
@@ -31,8 +31,32 @@ export default function ContactSection() {
   // State for the success modal and loading status
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const nameInputRef = useRef(null); // Create a ref for the name input
 
-  // Function to handle form submission by calling our API route
+  // Effect to focus the name input if the URL hash is #contact
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#contact' && nameInputRef.current) {
+        nameInputRef.current.focus({ preventScroll: true });
+        // Small timeout to ensure scrolling happens after focus
+        setTimeout(() => {
+            nameInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+      }
+    };
+    
+    // Check on initial load
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -50,10 +74,9 @@ export default function ContactSection() {
       });
 
       if (response.ok) {
-        setIsSuccess(true); // Trigger your existing SuccessModal
+        setIsSuccess(true);
         event.target.reset();
       } else {
-        // Handle server errors
         console.error('Failed to send message.');
         alert('An error occurred, please try again.');
       }
@@ -68,7 +91,6 @@ export default function ContactSection() {
   return (
     <>
       <section id="contact" className="relative w-full px-8 py-24 md:px-12 lg:px-24 bg-white text-black">
-        {/* All your animations and layout are preserved */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -108,7 +130,7 @@ export default function ContactSection() {
               Have a project in mind? <br/> Let&apos;s create something amazing.
             </h3>
             <p className="text-lg text-gray-700 mb-8">
-              I&apos;m currently available for freelance work and open to discussing new projects. Feel free to reach out using the form.
+              I&apos;m currently available for freelance work and open to discussing new projects, as well as techinical services. Feel free to reach out using the form.
             </p>
           </motion.div>
 
@@ -123,7 +145,14 @@ export default function ContactSection() {
             {/* The form now calls the new handleSubmit function */}
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" name="name" placeholder="Name" className="w-full bg-white rounded-md p-3 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" required />
+                <input 
+                  ref={nameInputRef}
+                  type="text" 
+                  name="name" 
+                  placeholder="Name" 
+                  className="w-full bg-white rounded-md p-3 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" 
+                  required 
+                />
                 <input type="email" name="email" placeholder="Email" className="w-full bg-white rounded-md p-3 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" required />
               </div>
               <input type="tel" name="phone" placeholder="Phone (Optional)" className="w-full bg-white rounded-md p-3 mt-4 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black" />
@@ -140,7 +169,7 @@ export default function ContactSection() {
         </div>
       </section>
 
-      {/* Your SuccessModal logic remains unchanged */}
+      {/* SuccessModal */}
       <AnimatePresence>
         {isSuccess && <SuccessModal onClose={() => setIsSuccess(false)} />}
       </AnimatePresence>

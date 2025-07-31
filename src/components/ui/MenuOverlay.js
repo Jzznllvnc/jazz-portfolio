@@ -48,8 +48,20 @@ export default function MenuOverlay({ onClose }) {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24"
+      // hide the scrollbar
+      className="fixed inset-0 z-40 bg-black text-white p-8 md:p-12 lg:p-24 overflow-y-auto no-scrollbar"
     >
+      {/* hidden scrollbar across different browsers */}
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+      `}</style>
+      
       <motion.ul
         variants={listVariants}
         initial="hidden"
@@ -58,7 +70,6 @@ export default function MenuOverlay({ onClose }) {
       >
         {navLinks.map((link, index) => (
           <motion.li key={index} variants={itemVariants} className="overflow-hidden w-full">
-            {/* The Link component now wraps the entire row */}
             <Link
               href={link.href}
               onClick={onClose}

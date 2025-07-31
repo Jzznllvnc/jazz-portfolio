@@ -21,7 +21,8 @@ const primaryServices = [
 // Data for the extended service
 const extendedService = {
     title: 'Technical Support & System Services',
-    description: 'Providing comprehensive technical solutions — from software optimization and remote troubleshooting to complete PC builds and hardware care. Services include OS installations, remote desktop support, driver and system management, performance tuning, cleaning, and reliable hardware diagnostics.'
+    description: 'Providing comprehensive technical solutions — from software optimization and remote troubleshooting to complete PC builds and hardware care. Services include OS installations, remote desktop support, driver and system management, performance tuning, cleaning, and reliable hardware diagnostics.',
+    link: '/services/technical-support'
 };
 
 
@@ -122,7 +123,7 @@ export default function ServicesSection() {
                 </div>
             </div>
             <div className="flex justify-between items-end gap-8">
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 text-base leading-relaxed">
                 {service.description}
                 </p>
                 {service.link ? (
@@ -140,7 +141,7 @@ export default function ServicesSection() {
         </div>
       </div>
       
-      {/* Extended Capabilities - Fixed mobile spacing */}
+      {/* Extended Capabilities */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-16 lg:mt-24">
         <div className="hidden lg:block"></div>
         <div>
@@ -165,12 +166,12 @@ export default function ServicesSection() {
                         </div>
                     </div>
                     <div className="flex justify-between items-end gap-8">
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 text-base leading-relaxed">
                         {extendedService.description}
                         </p>
-                        <button className="group flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
+                        <Link href={extendedService.link} className="group flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
                             <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v12m6-6H6"></path></svg>
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </motion.div>

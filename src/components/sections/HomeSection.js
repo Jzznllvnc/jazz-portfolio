@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-  '/images/me2.jpeg',
+  '/images/me2.png',
   '/images/random2.jpg',
   '/images/random.jpg',
   '/images/me.png',
@@ -22,7 +22,7 @@ export default function HomeSection() {
   const spread = canHover ? 70 : 35;
 
   return (
-    <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black overflow-hidden px-8 pt-32">
+    <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black px-8 pt-32 pb-16 md:pb-24">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
@@ -77,7 +77,7 @@ export default function HomeSection() {
                   <img
                     src={src}
                     alt={`Portfolio image ${index + 1}`}
-                    className="w-full h-full object-cover rounded-lg shadow-[0_8px_15px_5px_rgba(0,0,0,0.1)]"
+                    className="w-full h-full object-cover rounded-lg shadow-[0_20px_25px_15px_rgba(0,0,0,0.12)]"
                   />
                 </motion.div>
               ))}
@@ -91,7 +91,7 @@ export default function HomeSection() {
             transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.4 }}
             className="flex justify-center md:justify-start mt-8 md:mt-0"
           >
-            <p className="max-w-xs text-sm text-gray-600 leading-relaxed text-center md:text-left">
+            <p className="max-w-xs text-base text-gray-600 leading-relaxed text-center md:text-left">
               An aspiring UI/UX designer from the Philippines, eager to create intuitive and visually engaging digital experiences. With a growing eye for detail and a user-focused mindset, I&apos;m learning to turn complex challenges into functional, people-centered designs.
             </p>
           </motion.div>

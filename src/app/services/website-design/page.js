@@ -30,7 +30,7 @@ const WebsiteDesignPage = () => {
               animate="visible"
               variants={fadeIn}
             >
-              {/* Left Column: Single Landscape Image */}
+              {/* Left Column: Image */}
               <div className="w-full md:col-span-2 bg-white p-3 rounded-2xl shadow-md overflow-hidden">
                 <Image
                   src="/images/webdesign.png"
@@ -45,7 +45,7 @@ const WebsiteDesignPage = () => {
               <div className="md:col-span-1">
                 <p className="text-sm uppercase tracking-wider text-gray-500">About Service —</p>
                 <h2 className="text-2xl font-semibold tracking-tight uppercase mb-20">Website Design</h2>
-                <p className="text-2xl md:text-3xl font-light leading-relaxed">
+                <p className="text-xl md:text-2xl font-light leading-relaxed">
                   Creative and fully responsive website designs created from scratch with attention to every detail. Each project is built with user experience best practices and customized animations in mind.
                 </p>
               </div>

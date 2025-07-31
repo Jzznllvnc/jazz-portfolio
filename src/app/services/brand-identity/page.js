@@ -34,7 +34,7 @@ const BrandIdentityPage = () => {
               <div className="md:sticky md:top-24">
                 <p className="text-sm uppercase tracking-wider text-gray-500">About Service —</p>
                 <h2 className="text-2xl font-semibold tracking-tight uppercase mb-20">Brand Identity</h2>
-                <p className="text-2xl md:text-3xl font-light leading-relaxed">
+                <p className="text-xl md:text-2xl font-light leading-relaxed">
                   Crafting unique and memorable brand identities that resonate with audiences and set businesses apart.
                 </p>
               </div>
