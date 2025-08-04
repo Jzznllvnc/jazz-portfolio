@@ -39,7 +39,7 @@ const projects = [
     tags: ['HTML5', 'CSS3', 'Javascript', 'Node.js', 'Gemini API'],
     description: 'An AI-powered tool to summarize content of documents (DOCx, PDFs, PPT.PPTx, Images).',
     imageUrl: '/images/sum.png',
-    liveUrl: 'https://summup-alpha.vercel.app/',
+    liveUrl: 'https://summup-ai.vercel.app/',
     isInternal: false,
   }
 ];
