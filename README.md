@@ -15,7 +15,7 @@ To run this project on your own machine, follow these steps:
 2. **Navigate to the project directory:**
 
     ```bash
-    cd jazz-portfolio
+    cd (name of your project folder)
     ```
 
 3. **Install dependencies:**
