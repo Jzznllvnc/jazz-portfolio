@@ -30,7 +30,7 @@ const projects = [
     tags: ['HTML5', 'CSS3', 'Tailwind', 'Javascript', 'MySQL', 'Gemini API'],
     description: 'A dummy e-commerce web app exclusively for pc parts, with a chatbot.',
     imageUrl: '/images/craft.png',
-    liveUrl: 'https://craftwise.web1337.net/',
+    liveUrl: 'https://craftwise.ct.ws/',
     isInternal: false,
   },
   {
