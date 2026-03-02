@@ -42,7 +42,7 @@ export default function Footer() {
     >
       <div className="container mx-auto flex justify-between items-center border-t border-gray-200 pt-6">
         <p className="text-sm uppercase tracking-wider">
-          © jzznllvnc 2025. All rights reserved.
+          © jzznllvnc 2026. All rights reserved.
         </p>
         <div className="flex space-x-4">
           {socialLinks.map((link) => (

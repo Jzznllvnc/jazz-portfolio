@@ -1,14 +1,38 @@
 import nodemailer from 'nodemailer';
 
+const normalizeBaseUrl = (url) => url.replace(/\/$/, '');
+
+const getSiteUrl = (request) => {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL;
+
+  if (configuredUrl) {
+    if (configuredUrl.startsWith('http://') || configuredUrl.startsWith('https://')) {
+      return normalizeBaseUrl(configuredUrl);
+    }
+    return normalizeBaseUrl(`https://${configuredUrl}`);
+  }
+
+  const forwardedProto = request.headers.get('x-forwarded-proto');
+  const forwardedHost = request.headers.get('x-forwarded-host');
+  const host = forwardedHost || request.headers.get('host');
+
+  if (host) {
+    const protocol = forwardedProto || (host.includes('localhost') ? 'http' : 'https');
+    return normalizeBaseUrl(`${protocol}://${host}`);
+  }
+
+  return 'http://localhost:3000';
+};
+
 // Black and white email template for the site owner
-const emailHtmlToOwner = ({ name, email, phone, message, service }) => `
+const emailHtmlToOwner = ({ name, email, phone, message, service, siteUrl }) => `
   <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
     <div style="background-color: #000000; padding: 20px; text-align: center;">
       <h1 style="color: white; margin: 0; font-size: 24px;">Someone's Interested In Your Work</h1>
     </div>
 
     <div>
-      <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/toowner.png" alt="Portfolio Screenshot" style="width: 100%; height: auto; display: block; max-width: 600px;">
+      <img src="${siteUrl}/images/toowner.png" alt="Portfolio Screenshot" style="width: 100%; height: auto; display: block; max-width: 600px;">
     </div>
 
     <div style="padding: 30px;">
@@ -36,7 +60,7 @@ const emailHtmlToOwner = ({ name, email, phone, message, service }) => `
 `;
 
 // Auto-reply template
-const emailHtmlToUser = ({ name }) => `
+const emailHtmlToUser = ({ name, siteUrl }) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +75,7 @@ const emailHtmlToUser = ({ name }) => `
         </div>
 
         <div>
-          <img src="${process.env.NEXT_PUBLIC_SITE_URL}/images/touser.png" alt="Thank You" style="width: 100%; height: auto; display: block; max-width: 600px;">
+          <img src="${siteUrl}/images/touser.png" alt="Thank You" style="width: 100%; height: auto; display: block; max-width: 600px;">
         </div>
         
         <div style="padding: 30px; background-color: #ffffff;">
@@ -70,6 +94,7 @@ const emailHtmlToUser = ({ name }) => `
               <li style="margin-bottom: 10px;">
                 <a href="https://t.me/jzznllvnc" style="color: #333333;">Telegram</a>
               </li>
+            </ul>
 
             <div style="margin: 30px 0; text-align: center;">
                 <div style="display: inline-block; padding: 15px 25px; background-color: #f8f8f8; border-radius: 6px; border-left: 4px solid #000000;">
@@ -88,6 +113,11 @@ const emailHtmlToUser = ({ name }) => `
 export async function POST(request) {
   try {
     const { name, email, phone, message, service } = await request.json();
+    const siteUrl = getSiteUrl(request);
+
+    if (!name || !email || !message || !service) {
+      return Response.json({ error: 'Missing required fields.' }, { status: 400 });
+    }
 
     // Create a transporter object using the Gmail SMTP transport
     const transporter = nodemailer.createTransport({
@@ -102,8 +132,9 @@ export async function POST(request) {
     const mailOptionsToOwner = {
       from: `"Portfolio Contact" <${process.env.GMAIL_EMAIL}>`,
       to: process.env.GMAIL_EMAIL, // Send to your own email
+      replyTo: email,
       subject: `New Message from ${name}`,
-      html: emailHtmlToOwner({ name, email, phone, message, service }),
+      html: emailHtmlToOwner({ name, email, phone, message, service, siteUrl }),
     };
 
     // 2. Send the auto-reply confirmation email to the user
@@ -111,12 +142,14 @@ export async function POST(request) {
       from: `"Jazz" <${process.env.GMAIL_EMAIL}>`,
       to: email,
       subject: `Thank you for your message, ${name}!`,
-      html: emailHtmlToUser({ name }),
+      html: emailHtmlToUser({ name, siteUrl }),
     };
 
-    // Send both emails
-    await transporter.sendMail(mailOptionsToOwner);
-    await transporter.sendMail(mailOptionsToUser);
+    // Send both emails in parallel for faster response
+    await Promise.all([
+      transporter.sendMail(mailOptionsToOwner),
+      transporter.sendMail(mailOptionsToUser),
+    ]);
 
     return Response.json({ message: 'Emails sent successfully!' });
   } catch (error) {
