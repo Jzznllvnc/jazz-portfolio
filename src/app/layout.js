@@ -5,9 +5,36 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jzznllvnc.tech';
+const siteUrl = rawSiteUrl.startsWith('http') ? rawSiteUrl : `https://${rawSiteUrl}`;
+const ogImagePath = '/images/touser.png';
+
 export const metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Jazznelle Vince | Portfolio",
   description: "Creative Portfolio of Jazznelle Vince",
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "Jazznelle Vince | Portfolio",
+    description: "Creative Portfolio of Jazznelle Vince",
+    url: siteUrl,
+    siteName: 'Jazznelle Vince Portfolio',
+    images: [
+      {
+        url: ogImagePath,
+        alt: 'Jazznelle Vince Portfolio Preview',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Jazznelle Vince | Portfolio",
+    description: "Creative Portfolio of Jazznelle Vince",
+    images: [ogImagePath],
+  },
 };
 
 export default function RootLayout({ children }) {
