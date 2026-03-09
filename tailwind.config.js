@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        abel: ['Abel', 'sans-serif'],
-        righteous: ['Righteous', 'sans-serif'],
+        abel: ['var(--font-abel)', 'sans-serif'],
+        righteous: ['var(--font-righteous)', 'sans-serif'],
       },
     },
   },

@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Animation for the container to fade in
 const overlayVariants = {
@@ -82,11 +83,13 @@ export default function MenuOverlay({ onClose }) {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.5, ease: 'circOut' }}
                   >
-                    <img
+                    <Image
                       src="/images/gitprof.png"
                       alt="Jazznelle Vince"
+                      width={112}
+                      height={112}
+                      sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 112px"
                       className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full object-cover"
-                      onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/100x100/333/FFF?text=JV'; }}
                     />
                   </motion.div>
                 )}
