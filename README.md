@@ -61,7 +61,7 @@ The contact form is powered by a custom Next.js API route that uses **Nodemailer
     * Under "Select app," choose **Other (Custom name)**, name it something like "Portfolio Contact Form," and click **Generate**.
     * Google will give you a 16-digit password. Copy this password (without spaces) and paste it as the value for `GMAIL_APP_PASSWORD`.
 
-The backend logic that handles this form is located in `app/api/contact/route.js`.
+The backend logic that handles this form is located in `src/app/api/send/route.js`.
 
 ---
 
