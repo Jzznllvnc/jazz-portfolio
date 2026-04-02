@@ -7,11 +7,16 @@ import Image from 'next/image';
 import Footer from '@/components/sections/Footer';
 
 const projectImages = [
-  { src: '/images/one.png', width: 1562, height: 791 },
-  { src: '/images/two.png', width: 229, height: 327 },
-  { src: '/images/three.png', width: 143, height: 134 },
-  { src: '/images/four.png', width: 1304, height: 648 },
-  { src: '/images/five.png', width: 992, height: 814 },
+  { src: '/images/system1.png', width: 1562, height: 791, description: 'Login & Registration portal interface' },
+  { src: '/images/system2.png', width: 1304, height: 614, description: 'Login security verification, OTP for supplier and QR code for admin/employees' },
+  { src: '/images/system3.png', width: 301, height: 208, description: 'System logo design' },
+  { src: '/images/system4.png', width: 522, height: 729, description: 'Sidebar navigation, expanded and collapsed states' },
+  { src: '/images/system5.png', width: 1304, height: 614, description: 'Smart inventory management, showing warehouse blueprint' },
+  { src: '/images/system6.png', width: 1305, height: 614, description: 'Procurement workflow, purchase order creation through bidding or direct purchase' },
+  { src: '/images/system7.png', width: 1288, height: 614, description: 'Project & Shipment tracking, real-time updates' },
+  { src: '/images/system8.png', width: 1304, height: 614, description: 'Assets & maintenance management, equipment tracking' },
+  { src: '/images/system9.png', width: 1304, height: 606, description: 'Document management, invoices, contracts, etc. directs here' },
+  { src: '/images/system10.png', width: 939, height: 673, description: 'Supplier portal, mobile app friendly' },
 ];
 
 const sliderVariants = {
@@ -37,7 +42,7 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.1 } },
 };
 
-export default function AppliqPage() {
+export default function SlatePage() {
   const [[page, direction], setPage] = useState([0, 0]);
 
   const paginate = (newDirection) => {
@@ -70,7 +75,8 @@ export default function AppliqPage() {
           className="relative max-w-6xl mx-auto flex flex-col items-center"
           variants={fadeIn}
         >
-          <div className="relative w-full h-[400px] md:h-[600px] flex justify-center items-center">
+          <div className="relative w-full flex flex-col items-center">
+            <div className="relative w-full h-[400px] md:h-[600px] flex justify-center items-center">
             <button 
               onClick={() => paginate(-1)} 
               className="hidden md:flex absolute left-0 z-10 group w-14 h-14 bg-gray-200 rounded-full justify-center items-center transition-colors duration-300 hover:bg-black"
@@ -78,33 +84,38 @@ export default function AppliqPage() {
               <svg className="w-6 h-6 text-black transition-colors duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
             </button>
 
-            <div className="relative w-full max-w-4xl h-full overflow-hidden">
-              <AnimatePresence initial={false} custom={direction}>
-                <motion.div
-                  key={page}
-                  custom={direction}
-                  variants={sliderVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    x: { type: 'spring', stiffness: 250, damping: 20 },
-                    opacity: { duration: 0.2 },
-                  }}
-                  className="absolute w-full h-full p-4 md:p-8"
-                >
-                  <div className="bg-black w-full h-full rounded-xl flex justify-center items-center p-4">
-                    <Image
-                      src={projectImages[page].src}
-                      alt={`APPLIQ project image ${page + 1}`}
-                      width={projectImages[page].width}
-                      height={projectImages[page].height}
-                      className="max-w-full h-auto max-h-full rounded-xl object-contain"
-                      priority={page === 0}
-                    />
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+            <div className="relative w-full max-w-4xl h-full">
+              <div className="relative w-full h-full overflow-hidden">
+                <AnimatePresence initial={false} custom={direction}>
+                  <motion.div
+                    key={page}
+                    custom={direction}
+                    variants={sliderVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: 'spring', stiffness: 250, damping: 20 },
+                      opacity: { duration: 0.2 },
+                    }}
+                    className="absolute w-full h-full p-4 md:p-8"
+                  >
+                    <div className="bg-black w-full h-full rounded-xl flex justify-center items-center p-4">
+                      <Image
+                        src={projectImages[page].src}
+                        alt={`SLATE project image ${page + 1}`}
+                        width={projectImages[page].width}
+                        height={projectImages[page].height}
+                        className="max-w-full h-auto max-h-full rounded-xl object-contain"
+                        priority={page === 0}
+                      />
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <p className="absolute right-4 md:right-8 -bottom-3 text-sm text-gray-500 italic text-right leading-none">
+                {projectImages[page].description}
+              </p>
             </div>
 
             <button 
@@ -113,6 +124,8 @@ export default function AppliqPage() {
             >
               <svg className="w-6 h-6 text-black transition-colors duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
             </button>
+            </div>
+            
           </div>
           
           <div className="flex md:hidden justify-center items-center gap-4 mt-8">
@@ -131,11 +144,11 @@ export default function AppliqPage() {
         >
           <div className="md:col-span-1">
             <p className="text-sm uppercase tracking-wider text-gray-500">About project —</p>
-            <h2 className="text-2xl font-semibold tracking-tight uppercase">APPLIQ</h2>
+            <h2 className="text-2xl font-semibold tracking-tight uppercase">SLATE</h2>
           </div>
           <div className="md:col-span-2">
             <p className="text-xl md:text-2xl font-light leading-tight">
-              I designed the HR applicant management system&apos;s whole frontend, as well as the logo.
+              I managed the entirety of the UI/UX for SLATE&apos;s Logistic 1, and also contributed to some backend functionality.
             </p>
           </div>
         </motion.div>

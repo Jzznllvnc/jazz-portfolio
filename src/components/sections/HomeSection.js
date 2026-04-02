@@ -31,7 +31,7 @@ export default function HomeSection() {
     const isWordComplete = !isDeleting && typedWord === currentWord;
     const isWordEmpty = isDeleting && typedWord.length === 0;
 
-    let delay = isDeleting ? 105 : 170;
+    let delay = isDeleting ? 105 : 120;
     if (isWordComplete) delay = 1500;
     if (isWordEmpty) delay = 170;
 

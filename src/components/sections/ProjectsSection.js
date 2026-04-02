@@ -16,12 +16,12 @@ const projects = [
     isInternal: false,
   },
   {
-    title: 'APPLIQ',
-    date: '04 / 2025',
+    title: 'SLATE',
+    date: '09 / 2025',
     tags: ['Javascript', 'Tailwind CSS', 'PHP', 'MySQL'],
-    description: 'A simple HR applicant management we did as small project at school.',
-    imageUrl: '/images/appliq.png',
-    liveUrl: '/projects/appliq',
+    description: 'A capstone project simplifying logistics through real-time inventory insights, asset tracking, and procurement workflow automation.',
+    imageUrl: '/images/slate.png',
+    liveUrl: '/projects/slate',
     isInternal: true,
   },
   {
