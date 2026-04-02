@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,12 +10,13 @@ const projectImages = [
   { src: '/images/system1.png', width: 1562, height: 791, description: 'Login & Registration portal interface' },
   { src: '/images/system2.png', width: 1304, height: 614, description: 'Login security verification, OTP for supplier and QR code for admin/employees' },
   { src: '/images/system3.png', width: 301, height: 208, description: 'System logo design' },
+  { src: '/images/system0.png', width: 1562, height: 791, description: 'System dashboard overview' },
   { src: '/images/system4.png', width: 522, height: 729, description: 'Sidebar navigation, expanded and collapsed states' },
-  { src: '/images/system5.png', width: 1304, height: 614, description: 'Smart inventory management, showing warehouse blueprint' },
-  { src: '/images/system6.png', width: 1305, height: 614, description: 'Procurement workflow, purchase order creation through bidding or direct purchase' },
-  { src: '/images/system7.png', width: 1288, height: 614, description: 'Project & Shipment tracking, real-time updates' },
-  { src: '/images/system8.png', width: 1304, height: 614, description: 'Assets & maintenance management, equipment tracking' },
-  { src: '/images/system9.png', width: 1304, height: 606, description: 'Document management, invoices, contracts, etc. directs here' },
+  { src: '/images/system5.png', width: 1562, height: 791, description: 'Smart inventory management, showing warehouse blueprint' },
+  { src: '/images/system6.png', width: 1562, height: 791, description: 'Procurement workflow, purchase order creation through bidding or direct purchase' },
+  { src: '/images/system7.png', width: 1562, height: 791, description: 'Project & Shipment tracking, real-time updates' },
+  { src: '/images/system8.png', width: 1562, height: 791, description: 'Assets & maintenance management, equipment tracking' },
+  { src: '/images/system9.png', width: 1562, height: 791, description: 'Document management, invoices, contracts, etc. directs here' },
   { src: '/images/system10.png', width: 939, height: 673, description: 'Supplier portal, mobile app friendly' },
 ];
 
@@ -44,6 +45,10 @@ const fadeIn = {
 
 export default function SlatePage() {
   const [[page, direction], setPage] = useState([0, 0]);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const swipeStartXRef = useRef(null);
+  const swipeCurrentXRef = useRef(null);
+  const suppressNextImageClickRef = useRef(false);
 
   const paginate = (newDirection) => {
     let newPage = page + newDirection;
@@ -54,6 +59,87 @@ export default function SlatePage() {
     }
     setPage([newPage, newDirection]);
   };
+
+  const resetSwipeTracking = () => {
+    swipeStartXRef.current = null;
+    swipeCurrentXRef.current = null;
+  };
+
+  const handleSwipeStart = (event) => {
+    if (event.touches.length !== 1) return;
+    swipeStartXRef.current = event.touches[0].clientX;
+    swipeCurrentXRef.current = event.touches[0].clientX;
+    suppressNextImageClickRef.current = false;
+  };
+
+  const handleSwipeMove = (event) => {
+    if (swipeStartXRef.current === null || event.touches.length !== 1) return;
+    swipeCurrentXRef.current = event.touches[0].clientX;
+  };
+
+  const getSwipeDirection = () => {
+    if (swipeStartXRef.current === null || swipeCurrentXRef.current === null) {
+      resetSwipeTracking();
+      return 0;
+    }
+
+    const deltaX = swipeStartXRef.current - swipeCurrentXRef.current;
+    resetSwipeTracking();
+
+    if (Math.abs(deltaX) < 45) return 0;
+    return deltaX > 0 ? 1 : -1;
+  };
+
+  const handleSliderSwipeEnd = () => {
+    const swipeDirection = getSwipeDirection();
+    if (swipeDirection === 0) return;
+
+    paginate(swipeDirection);
+    suppressNextImageClickRef.current = true;
+  };
+
+  const handlePreviewSwipeEnd = () => {
+    const swipeDirection = getSwipeDirection();
+    if (swipeDirection === 0) return;
+    paginate(swipeDirection);
+  };
+
+  const handleImagePreviewOpen = () => {
+    if (suppressNextImageClickRef.current) {
+      suppressNextImageClickRef.current = false;
+      return;
+    }
+    setIsPreviewOpen(true);
+  };
+
+  useEffect(() => {
+    if (!isPreviewOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsPreviewOpen(false);
+        return;
+      }
+
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        const keyDirection = event.key === 'ArrowRight' ? 1 : -1;
+        setPage(([currentPage]) => {
+          let newPage = currentPage + keyDirection;
+          if (newPage < 0) {
+            newPage = projectImages.length - 1;
+          } else if (newPage >= projectImages.length) {
+            newPage = 0;
+          }
+          return [newPage, keyDirection];
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPreviewOpen]);
 
   return (
     <main className="bg-white text-black">
@@ -100,7 +186,16 @@ export default function SlatePage() {
                     }}
                     className="absolute w-full h-full p-4 md:p-8"
                   >
-                    <div className="bg-black w-full h-full rounded-xl flex justify-center items-center p-4">
+                    <button
+                      type="button"
+                      onClick={handleImagePreviewOpen}
+                      onTouchStart={handleSwipeStart}
+                      onTouchMove={handleSwipeMove}
+                      onTouchEnd={handleSliderSwipeEnd}
+                      onTouchCancel={resetSwipeTracking}
+                      className="bg-black w-full h-full rounded-xl flex justify-center items-center p-4 cursor-zoom-in"
+                      aria-label={`Open SLATE project image ${page + 1} in full size`}
+                    >
                       <Image
                         src={projectImages[page].src}
                         alt={`SLATE project image ${page + 1}`}
@@ -109,11 +204,11 @@ export default function SlatePage() {
                         className="max-w-full h-auto max-h-full rounded-xl object-contain"
                         priority={page === 0}
                       />
-                    </div>
+                    </button>
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <p className="absolute right-4 md:right-8 -bottom-3 text-sm text-gray-500 italic text-right leading-none">
+              <p className="absolute right-4 md:right-8 top-full mt-2 text-sm text-gray-500 italic text-right leading-snug max-w-[85%]">
                 {projectImages[page].description}
               </p>
             </div>
@@ -128,7 +223,7 @@ export default function SlatePage() {
             
           </div>
           
-          <div className="flex md:hidden justify-center items-center gap-4 mt-8">
+          <div className="flex md:hidden justify-center items-center gap-4 mt-20">
               <button onClick={() => paginate(-1)} className="group w-14 h-14 bg-gray-200 rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-black">
                   <svg className="w-6 h-6 text-black transition-colors duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
               </button>
@@ -159,6 +254,49 @@ export default function SlatePage() {
           </Link>
         </div>
       </motion.section>
+
+      <AnimatePresence>
+        {isPreviewOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/90 p-4 md:p-8 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsPreviewOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setIsPreviewOpen(false)}
+              className="absolute z-20 top-4 right-4 md:top-6 md:right-6 w-11 h-11 rounded-full bg-white/20 text-white text-2xl leading-none flex items-center justify-center hover:bg-white/30"
+              aria-label="Close full-size image preview"
+            >
+              ×
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.97, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.97, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-[95vw] max-h-[95vh] flex items-center justify-center"
+              onClick={(event) => event.stopPropagation()}
+              onTouchStart={handleSwipeStart}
+              onTouchMove={handleSwipeMove}
+              onTouchEnd={handlePreviewSwipeEnd}
+              onTouchCancel={resetSwipeTracking}
+            >
+              <Image
+                src={projectImages[page].src}
+                alt={`SLATE project image ${page + 1} full size`}
+                width={projectImages[page].width}
+                height={projectImages[page].height}
+                className="w-auto h-auto max-w-full max-h-full object-contain"
+                priority
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </main>
