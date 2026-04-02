@@ -98,12 +98,6 @@ export default function SlatePage() {
     suppressNextImageClickRef.current = true;
   };
 
-  const handlePreviewSwipeEnd = () => {
-    const swipeDirection = getSwipeDirection();
-    if (swipeDirection === 0) return;
-    paginate(swipeDirection);
-  };
-
   const handleImagePreviewOpen = () => {
     if (suppressNextImageClickRef.current) {
       suppressNextImageClickRef.current = false;
@@ -280,10 +274,6 @@ export default function SlatePage() {
               transition={{ duration: 0.2 }}
               className="relative max-w-[95vw] max-h-[95vh] flex items-center justify-center"
               onClick={(event) => event.stopPropagation()}
-              onTouchStart={handleSwipeStart}
-              onTouchMove={handleSwipeMove}
-              onTouchEnd={handlePreviewSwipeEnd}
-              onTouchCancel={resetSwipeTracking}
             >
               <Image
                 src={projectImages[page].src}
@@ -294,6 +284,31 @@ export default function SlatePage() {
                 priority
               />
             </motion.div>
+
+            <div className="absolute inset-x-0 bottom-6 flex md:hidden justify-center items-center gap-4 z-20">
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  paginate(-1);
+                }}
+                className="group w-14 h-14 bg-gray-200 rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-black"
+                aria-label="Previous image"
+              >
+                <svg className="w-6 h-6 text-black transition-colors duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+              </button>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  paginate(1);
+                }}
+                className="group w-14 h-14 bg-gray-200 rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-black"
+                aria-label="Next image"
+              >
+                <svg className="w-6 h-6 text-black transition-colors duration-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
