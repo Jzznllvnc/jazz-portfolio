@@ -41,8 +41,8 @@ export default function Footer() {
       className="bg-white text-gray-500 px-8 py-6 md:px-12 lg:px-24"
     >
       <div className="container mx-auto flex justify-between items-center border-t border-gray-200 pt-6">
-        <p className="text-sm uppercase tracking-wider">
-          © jzznllvnc 2026. All rights reserved.
+        <p className="text-sm tracking-wider">
+          Built by Jazz ✦ glad you're here
         </p>
         <div className="flex space-x-4">
           {socialLinks.map((link) => (

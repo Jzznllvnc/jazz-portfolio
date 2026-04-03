@@ -90,10 +90,10 @@ export default function ServicesSection() {
             variants={fadeInFromBottom}
             >
             <h3 className="text-3xl font-semibold leading-tight tracking-tight mb-6">
-                Open to new challenges in three specialized categories —
+                Open to work with you in three specialized categories —
             </h3>
             <p className="text-gray-600 mb-4 uppercase text-sm tracking-wider">
-                Collaborate and create together something exceptional for your success.
+                Checkout the categories on how I can help you.
             </p>
             <div className="inline-flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>

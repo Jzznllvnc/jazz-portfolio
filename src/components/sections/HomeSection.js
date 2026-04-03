@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Crimson_Text } from 'next/font/google';
 
 const images = [
   { src: '/images/me2.png', alt: 'Pixelated portrait', width: 731, height: 758 },
@@ -10,6 +11,8 @@ const images = [
   { src: '/images/random.jpg', alt: 'Abstract blurry portrait', width: 727, height: 727 },
   { src: '/images/me.png', alt: 'Profile silhouette', width: 3672, height: 3672 },
 ];
+
+const crimsonText = Crimson_Text({ subsets: ['latin'], weight: ['400', '600', '700'], style: ['italic'] });
 
 const typewriterWords = ['WEB', 'BRAND', 'SYSTEM', 'TECH'];
 
@@ -68,13 +71,15 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}
-          className="text-7xl md:text-8xl font-bold font-righteous uppercase leading-none text-center mb-16"
+          className="text-7xl md:text-8xl font-righteous uppercase leading-none text-center mb-16"
         >
           <span className="flex min-h-[1em] items-center justify-center mb-2 md:mb-3">
-            <span className="inline-block">{typedWord}</span>
-            <span aria-hidden="true" className="ml-[2px] inline-block h-[0.9em] w-[0.09em] animate-pulse bg-black" />
+            <span className="inline-flex w-[7ch] items-center justify-center">
+              <span className={`${crimsonText.className} inline-block text-[1.16em] leading-none font-semibold`}>{typedWord || '\u00A0'}</span>
+              <span aria-hidden="true" className="ml-[6px] inline-block self-center h-[0.8em] w-[0.09em] animate-pulse bg-black" />
+            </span>
           </span>
-          <span className="block">SOLUTIONS.</span>
+          <span className="block font-medium">SOLUTIONS.</span>
         </motion.h1>
 
         <div className="w-full grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-x-[170px] items-center">
