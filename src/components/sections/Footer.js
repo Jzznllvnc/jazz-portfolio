@@ -42,7 +42,7 @@ export default function Footer() {
     >
       <div className="container mx-auto flex justify-between items-center border-t border-gray-200 pt-6">
         <p className="text-sm tracking-wider">
-          Built by Jazz ✦ glad you're here
+          Built by Jazz ✦ glad you&apos;re here
         </p>
         <div className="flex space-x-4">
           {socialLinks.map((link) => (
