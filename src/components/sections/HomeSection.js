@@ -141,7 +141,7 @@ export default function HomeSection() {
             className="flex justify-center md:justify-start mt-8 md:mt-0"
           >
             <p className="max-w-xs text-base text-gray-600 leading-relaxed text-center md:text-left">
-              I combine creative design with reliable technology. Whether I&apos;m designing a brand, building a website, or providing hands-on system support, my goal is to make things that look great and run smoothly.
+              I combine creative design with reliable technology. Whether I&apos;m designing a brand, building a website, or providing hands-on system support, my goal is to make things look great and run smoothly.
             </p>
           </motion.div>
         </div>
