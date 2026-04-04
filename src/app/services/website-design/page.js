@@ -73,8 +73,18 @@ const WebsiteDesignPage = () => {
             </div>
 
             <div className="flex justify-center mt-24">
-              <Link href="/#services" className="group inline-block w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
-                <svg className="w-6 h-6 text-white transform transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+              <Link
+                href="/#services"
+                className="group flex h-14 w-14 items-center overflow-hidden rounded-full bg-black px-4 text-white transition-[width,padding] duration-300 ease-out md:hover:w-[132px] md:hover:px-5"
+              >
+                <span className="flex w-6 shrink-0 items-center justify-center transition-transform duration-300 ease-out md:group-hover:-translate-x-0.5">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                </span>
+                <span className="ml-0 max-w-0 overflow-hidden whitespace-nowrap transition-[max-width,margin] duration-300 ease-out md:group-hover:ml-3 md:group-hover:max-w-[58px]">
+                  <span className="block translate-y-3 opacity-0 text-sm font-medium uppercase tracking-[0.22em] transition-all duration-300 ease-out md:group-hover:translate-y-0 md:group-hover:opacity-100">
+                    Back
+                  </span>
+                </span>
               </Link>
             </div>
         </motion.div>
