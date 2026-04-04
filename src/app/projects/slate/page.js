@@ -160,20 +160,20 @@ export default function SlatePage() {
         variants={fadeIn}
       >
         <motion.div 
-          className="relative max-w-6xl mx-auto flex flex-col items-center"
+          className="relative max-w-6xl mx-auto flex flex-col items-center overflow-visible"
           variants={fadeIn}
         >
-          <div className="relative w-full flex flex-col items-center">
-            <div className="mb-4 flex justify-center">
+          <div className="relative w-full flex flex-col items-center overflow-visible">
+            <div className="mb-4 flex justify-center overflow-visible">
               <a
                 href={slateLiveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-4"
+                className="group relative z-[60] inline-flex items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30 focus-visible:ring-offset-4 md:z-auto"
               >
                 <span
                   aria-hidden="true"
-                  className="absolute -inset-6 rounded-full opacity-50 blur-xl animate-[spin_3.25s_linear_infinite]"
+                  className="pointer-events-none absolute -inset-8 rounded-full opacity-50 blur-xl animate-[spin_3.25s_linear_infinite] md:-inset-6"
                   style={slateLiveAuraStyle}
                 />
                 <span aria-hidden="true" className="absolute inset-0 rounded-full overflow-hidden">
