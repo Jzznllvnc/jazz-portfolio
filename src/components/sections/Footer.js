@@ -31,7 +31,11 @@ const socialLinks = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ showScrollToTop = false }) {
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <motion.footer
       initial={{ opacity: 0 }}
@@ -40,23 +44,56 @@ export default function Footer() {
       transition={{ duration: 1, ease: 'easeInOut' }}
       className="bg-white text-gray-500 px-8 py-6 md:px-12 lg:px-24"
     >
-      <div className="container mx-auto flex justify-between items-center border-t border-gray-200 pt-6">
-        <p className="text-sm tracking-wider">
-          Built by Jazz ✦ glad you&apos;re here
-        </p>
-        <div className="flex space-x-4">
-          {socialLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 flex justify-center items-center border-2 border-black rounded-full text-black hover:bg-black hover:text-white transition-colors duration-300"
-              aria-label={link.name}
+      <div className="container mx-auto">
+        {showScrollToTop && (
+          <div className="mb-6 flex justify-center md:hidden">
+            <button
+              type="button"
+              onClick={handleScrollToTop}
+              className="flex h-14 w-14 items-center justify-center rounded-full bg-black text-white"
+              aria-label="Back to top"
             >
-              {link.icon}
-            </a>
-          ))}
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19V5m0 0l-7 7m7-7l7 7"></path></svg>
+            </button>
+          </div>
+        )}
+        <div className={`relative border-t border-gray-200 pt-6${showScrollToTop ? ' md:pt-8' : ''}`}>
+          {showScrollToTop && (
+            <button
+              type="button"
+              onClick={handleScrollToTop}
+              className="group absolute left-1/2 top-0 hidden h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center overflow-hidden rounded-full bg-black px-4 text-white transition-[width,padding-left,padding-right] duration-300 ease-out md:flex md:hover:w-[184px] md:hover:pl-5 md:hover:pr-4"
+              aria-label="Back to top"
+            >
+              <span className="flex w-6 shrink-0 items-center justify-center transition-transform duration-300 ease-out md:group-hover:-translate-x-0.5">
+                <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19V5m0 0l-7 7m7-7l7 7"></path></svg>
+              </span>
+              <span className="ml-0 max-w-0 overflow-hidden whitespace-nowrap transition-[max-width,margin] duration-300 ease-out md:group-hover:ml-3 md:group-hover:max-w-[118px]">
+                <span className="block translate-y-3 opacity-0 text-sm font-medium tracking-[0.18em] transition-all duration-300 ease-out md:group-hover:translate-y-0 md:group-hover:opacity-100">
+                  Back to Top
+                </span>
+              </span>
+            </button>
+          )}
+          <div className="flex items-center justify-between gap-6">
+            <p className="text-sm tracking-wider">
+              Built by Jazz ✦ glad you&apos;re here
+            </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 flex justify-center items-center border-2 border-black rounded-full text-black hover:bg-black hover:text-white transition-colors duration-300"
+                  aria-label={link.name}
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </motion.footer>

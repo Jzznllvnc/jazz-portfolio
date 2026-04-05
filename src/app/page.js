@@ -38,7 +38,7 @@ export default function Home() {
       <ProjectsSection />
       <ServicesSection />
       <ContactSection />
-      <Footer />
+      <Footer showScrollToTop />
     </main>
   );
 }
