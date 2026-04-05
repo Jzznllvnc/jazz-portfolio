@@ -10,12 +10,30 @@ import ServicesSection from '@/components/sections/ServicesSection';
 import ContactSection from '@/components/sections/ContactSection';
 import Footer from '@/components/sections/Footer';
 import MenuOverlay from '@/components/ui/MenuOverlay';
+import Preloader from '@/components/ui/Preloader';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCheckingLoader, setIsCheckingLoader] = useState(true);
+  const [showLoader, setShowLoader] = useState(false);
+  const [isContentReady, setIsContentReady] = useState(false);
 
   useEffect(() => {
-    if (isMenuOpen) {
+    const hasSeenLoader = window.sessionStorage.getItem('hasSeenLoader');
+
+    if (hasSeenLoader) {
+      setIsContentReady(true);
+      setShowLoader(false);
+      setIsCheckingLoader(false);
+      return;
+    }
+
+    setShowLoader(true);
+    setIsCheckingLoader(false);
+  }, []);
+
+  useEffect(() => {
+    if (isMenuOpen || showLoader || isCheckingLoader || !isContentReady) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
@@ -23,22 +41,39 @@ export default function Home() {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, showLoader, isCheckingLoader, isContentReady]);
+
+  const handleLoaderComplete = () => {
+    window.sessionStorage.setItem('hasSeenLoader', 'true');
+    setShowLoader(false);
+    setIsContentReady(true);
+  };
+
+  if (isCheckingLoader) {
+    return <main className="min-h-screen bg-white" />;
+  }
 
   return (
-    <main className="bg-white text-black">
-      <Header isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
-      
-      <AnimatePresence>
-        {isMenuOpen && <MenuOverlay onClose={() => setIsMenuOpen(false)} />}
-      </AnimatePresence>
+    <>
+      {showLoader && <Preloader onComplete={handleLoaderComplete} />}
+      {isContentReady ? (
+        <main className="bg-white text-black">
+          <Header isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+          
+          <AnimatePresence>
+            {isMenuOpen && <MenuOverlay onClose={() => setIsMenuOpen(false)} />}
+          </AnimatePresence>
 
-      {/* All sections are in one page */}
-      <HomeSection />
-      <ProjectsSection />
-      <ServicesSection />
-      <ContactSection />
-      <Footer showScrollToTop />
-    </main>
+          {/* All sections are in one page */}
+          <HomeSection />
+          <ProjectsSection />
+          <ServicesSection />
+          <ContactSection />
+          <Footer showScrollToTop />
+        </main>
+      ) : (
+        <main className="min-h-screen bg-white" aria-hidden="true" />
+      )}
+    </>
   );
 }
