@@ -21,7 +21,7 @@ export default function Header({ isOpen, setIsOpen }) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 z-50 w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center bg-white"
+      className="fixed inset-x-0 top-0 z-50 box-border flex items-center justify-between bg-white px-8 py-6 md:px-12 lg:px-24"
     >
       {/* Name on the left */}
       <div className="text-3xl font-bold tracking-tighter text-black leading-tight">
@@ -34,7 +34,7 @@ export default function Header({ isOpen, setIsOpen }) {
       <motion.button
         aria-label="Toggle menu"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-black rounded-full flex flex-col justify-center items-center space-y-1.5 group transition-colors duration-300 hover:bg-[#00ffcc]"
+        className="h-14 w-14 shrink-0 rounded-full bg-black flex flex-col items-center justify-center space-y-1.5 group transition-colors duration-300 hover:bg-[#00ffcc]"
         animate={isOpen ? 'open' : 'closed'}
       >
         <motion.span

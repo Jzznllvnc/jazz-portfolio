@@ -62,7 +62,7 @@ export default function HomeSection() {
   }, [activeWordIndex, isDeleting, typedWord]);
 
   // Image spread
-  const spread = canHover ? 70 : 35;
+  const spread = canHover ? 70 : 30;
 
   return (
     <section id="home" className="relative w-full min-h-screen flex flex-col justify-center items-center text-black px-8 pt-32 pb-16 md:pb-24">
@@ -105,7 +105,7 @@ export default function HomeSection() {
             className="relative flex justify-center items-center order-first md:order-none"
           >
             <div
-              className="relative w-64 h-80 md:w-80 md:h-96"
+              className="relative w-60 h-72 md:w-80 md:h-96"
             >
               {images.map((image, index) => (
                 <motion.div

@@ -34,12 +34,15 @@ export default function Home() {
 
   useEffect(() => {
     if (isMenuOpen || showLoader || isCheckingLoader || !isContentReady) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflowY = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'auto';
     }
+    document.body.style.overflowX = 'hidden';
+
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflowY = 'auto';
+      document.body.style.overflowX = '';
     };
   }, [isMenuOpen, showLoader, isCheckingLoader, isContentReady]);
 
@@ -57,7 +60,7 @@ export default function Home() {
     <>
       {showLoader && <Preloader onComplete={handleLoaderComplete} />}
       {isContentReady ? (
-        <main className="bg-white text-black">
+        <main className="overflow-x-hidden bg-white text-black">
           <Header isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
           
           <AnimatePresence>
@@ -72,7 +75,7 @@ export default function Home() {
           <Footer showScrollToTop />
         </main>
       ) : (
-        <main className="min-h-screen bg-white" aria-hidden="true" />
+        <main className="min-h-screen overflow-x-hidden bg-white" aria-hidden="true" />
       )}
     </>
   );
