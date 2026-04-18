@@ -60,7 +60,7 @@ export default function Home() {
     <>
       {showLoader && <Preloader onComplete={handleLoaderComplete} />}
       {isContentReady ? (
-        <main className="overflow-x-hidden bg-white text-black">
+        <main className="bg-white text-black">
           <Header isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
           
           <AnimatePresence>
@@ -75,7 +75,7 @@ export default function Home() {
           <Footer showScrollToTop />
         </main>
       ) : (
-        <main className="min-h-screen overflow-x-hidden bg-white" aria-hidden="true" />
+        <main className="min-h-screen bg-white" aria-hidden="true" />
       )}
     </>
   );

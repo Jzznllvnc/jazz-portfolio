@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--services-sticky-offset: 7.5rem;
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--services-sticky-offset: 8rem;
+	}
+}
+
+@media (min-width: 1536px) {
+	:root {
+		--services-sticky-offset: 8.5rem;
+	}
+}

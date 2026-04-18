@@ -83,7 +83,7 @@ export default function ServicesSection() {
       {/* Main Content Grid for Primary Services */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Left Column: Sticky Introductory */}
-        <div className="lg:sticky top-32 self-start">
+        <div className="self-start lg:sticky lg:top-[var(--services-sticky-offset)] lg:h-fit">
             <motion.div
             initial="hidden"
             animate="visible"
