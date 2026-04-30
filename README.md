@@ -1,72 +1,64 @@
-# ✦ Built using [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com/), and [Framer Motion](https://motion.dev/).
+# Jazznelle Vince — Portfolio
 
-© Design layout heavily inspired from: https://preview.studio.site/templates/gBRO381qDm/
+Welcome to my digital portfolio — a curated space that introduces who I am, what I build, and how I combine creative design with reliable technology.
 
-### ≻ &nbsp;Getting Started Locally
+This portfolio is designed to feel more like a guided visual experience than a plain project list. As you move through the page, you will see a mix of personal identity, selected work, service categories, and ways to get in touch.
 
-To run this project on your own machine, follow these steps:
+## What You Are Seeing
 
-1. **Clone the repository:**
+### Home
 
-    ```bash
-    git clone https://github.com/Jzznllvnc/jazz-portfolio.git
-    ```
+The opening section presents my focus areas through an animated headline: web, brand, system, and tech solutions. It sets the tone for the portfolio — clean, minimal, expressive, and built around practical digital work.
 
-2. **Navigate to the project directory:**
+The image stack and short introduction give a quick sense of personality, location, and creative direction.
 
-    ```bash
-    cd (name of your project folder)
-    ```
+### Projects
 
-3. **Install dependencies:**
+The projects section highlights selected works that show different areas of development and design:
 
-    ```bash
-    npm install
-    ```
+- **SCRAPNEAR** — A community-based web app for finding nearby recycling centers.
+- **SLATE** — A logistics and inventory system with asset tracking, procurement workflows, and operational dashboards.
+- **CRAFTWISE** — A PC-parts e-commerce concept with chatbot support.
+- **SUMMUP** — An AI-powered document summarization tool.
 
-4. **Run the development server:**
+Each project card includes a preview image, date, tools used, short description, and a visit button. Some projects open as external live sites, while SLATE includes an internal case-study style page with more detailed system previews.
 
-    ```bash
-    npm run dev
-    ```
+### Services
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The services section explains the main ways I can help:
 
----
+- **Website Design** — Responsive, custom-designed websites focused on clean visuals, usability, and interaction.
+- **Brand Identity** — Visual identity work such as logos, colors, typography, and brand direction.
+- **Technical Support & System Services** — Practical tech support, troubleshooting, system optimization, hardware care, and related services.
 
-### ≻ &nbsp;Contact Form Setup
+Each service page gives a closer look at what the category covers.
 
-The contact form is powered by a custom Next.js API route that uses **Nodemailer** to send emails via a Gmail account. To make it work, you need to set up environment variables.
+### Contact
 
-1.  **Create an environment file:**
+The contact section is for project inquiries, collaborations, and technical service requests. Visitors can choose a service category, leave their details, and send a message directly through the form.
 
-    In the root of your project, create a file named `.env.local`.
+After submitting, the form confirms that the message was received, and an email response flow handles the communication.
 
-2.  **Add your credentials to the file:**
+## Visual Direction
 
-    Copy the following into your `.env.local` file and replace the placeholders with your actual Gmail address and a Google App Password.
+The portfolio uses a mostly black-and-white layout with bold typography, soft motion, rounded details, and subtle interactive elements. The goal is to keep the experience clean and direct while still giving each section personality.
 
-    ```bash
-    GMAIL_EMAIL=your_email@gmail.com
-    GMAIL_APP_PASSWORD=your_16_digit_app_password
-    ```
+The layout direction was inspired by:
 
-3.  **How to get a Google App Password:**
+https://preview.studio.site/templates/gBRO381qDm/
 
-    * Go to your Google Account at [myaccount.google.com](https://myaccount.google.com).
-    * Navigate to the **Security** tab.
-    * Make sure **2-Step Verification** is turned on. You cannot create App Passwords without it.
-    * Click on **App passwords** (you may need to sign in again).
-    * Under "Select app," choose **Other (Custom name)**, name it something like "Portfolio Contact Form," and click **Generate**.
-    * Google will give you a 16-digit password. Copy this password (without spaces) and paste it as the value for `GMAIL_APP_PASSWORD`.
+## Built With
 
-The backend logic that handles this form is located in `src/app/api/send/route.js`.
+This portfolio was built using:
 
----
+- **Next.js**
+- **React**
+- **Tailwind CSS**
+- **Framer Motion**
+- **GSAP**
+- **Vercel Analytics**
+- **Nodemailer**
 
-### ≻ &nbsp;Deploy on Vercel (or your choice)
+## Final Note
 
-I deployed this on [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thanks for visiting. This portfolio is both a personal introduction and a working showcase of the kind of design, development, and technical solutions I enjoy creating.
