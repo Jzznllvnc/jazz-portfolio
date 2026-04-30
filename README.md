@@ -11,15 +11,3 @@
 ### ≻ &nbsp;Contact
 
 If you have any questions or would like to get in touch, feel free to use the contact form on the portfolio or reach out directly.
-
-### ≻ &nbsp;Built With
-
-This portfolio was built using:
-- **Next.js**
-- **React**
-- **Tailwind CSS**
-- **Framer Motion**
-- **GSAP**
-- **Vercel Analytics**
-- **Nodemailer**
-
