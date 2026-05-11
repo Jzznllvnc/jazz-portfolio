@@ -46,6 +46,35 @@ export default function Home() {
     };
   }, [isMenuOpen, showLoader, isCheckingLoader, isContentReady]);
 
+  useEffect(() => {
+    if (!isContentReady) return;
+
+    const shouldRestoreServicesScroll = window.sessionStorage.getItem('restoreServicesScroll');
+    const savedScrollX = window.sessionStorage.getItem('servicesScrollX');
+    const savedScrollY = window.sessionStorage.getItem('servicesScrollY');
+
+    if (shouldRestoreServicesScroll !== 'true' || savedScrollY === null) return;
+
+    window.sessionStorage.removeItem('restoreServicesScroll');
+    window.sessionStorage.removeItem('servicesScrollX');
+    window.sessionStorage.removeItem('servicesScrollY');
+
+    const scrollX = Number(savedScrollX || 0);
+    const scrollY = Number(savedScrollY);
+
+    if (!Number.isFinite(scrollY)) return;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          left: Number.isFinite(scrollX) ? scrollX : 0,
+          top: scrollY,
+          behavior: 'auto',
+        });
+      });
+    });
+  }, [isContentReady]);
+
   const handleLoaderComplete = () => {
     window.sessionStorage.setItem('hasSeenLoader', 'true');
     setShowLoader(false);

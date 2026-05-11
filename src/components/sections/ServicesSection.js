@@ -50,6 +50,11 @@ const titleVariants = {
 };
 
 export default function ServicesSection() {
+  const saveServicesScrollPosition = () => {
+    window.sessionStorage.setItem('servicesScrollX', String(window.scrollX));
+    window.sessionStorage.setItem('servicesScrollY', String(window.scrollY));
+  };
+
   return (
     <section id="services" className="w-full px-8 py-24 md:px-12 lg:px-24 bg-white pt-32">
       {/* Section Title */}
@@ -127,7 +132,7 @@ export default function ServicesSection() {
                 {service.description}
                 </p>
                 {service.link ? (
-                <Link href={service.link} className="group relative flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
+                <Link href={service.link} onClick={saveServicesScrollPosition} className="group relative flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
                     <svg className="w-6 h-6 text-white transition-opacity duration-300 md:group-hover:opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
                     <svg className="w-6 h-6 text-white absolute transition-opacity duration-300 opacity-0 md:group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 5l7 7-7 7M6 5l7 7-7 7"></path></svg>
                 </Link>
@@ -166,7 +171,7 @@ export default function ServicesSection() {
                       <p className="text-gray-700 text-base leading-relaxed">
                       {extendedService.description}
                       </p>
-                      <Link href={extendedService.link} className="group relative flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
+                      <Link href={extendedService.link} onClick={saveServicesScrollPosition} className="group relative flex-shrink-0 w-14 h-14 bg-black rounded-full flex justify-center items-center transition-colors duration-300 hover:bg-[#00ffcc]">
                           <svg className="w-6 h-6 text-white transition-opacity duration-300 md:group-hover:opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
                           <svg className="w-6 h-6 text-white absolute transition-opacity duration-300 opacity-0 md:group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 5l7 7-7 7M6 5l7 7-7 7"></path></svg>
                       </Link>

@@ -76,7 +76,7 @@ export default function HomeSection() {
           <span className="flex min-h-[1em] items-center justify-center mb-1 md:mb-1">
             <span className="inline-flex w-[7ch] items-center justify-center">
               <span className={`${crimsonText.className} inline-block text-[1.1em] leading-none font-semibold`}>{typedWord || '\u00A0'}</span>
-              <span aria-hidden="true" className="ml-[6px] inline-block self-center h-[0.8em] w-[0.09em] animate-pulse bg-black" />
+              <span aria-hidden="true" className="typewriter-cursor ml-[6px] inline-block self-center h-[0.78em] w-[0.09em] rounded-full bg-black" />
             </span>
           </span>
           <span className="block font-medium mb-2">SOLUTIONS.</span>

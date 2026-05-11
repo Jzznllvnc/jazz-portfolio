@@ -20,6 +20,10 @@ const bookScheduleAuraStyle = {
 };
 
 export default function TechnicalSupportPage() {
+  const handleBackClick = () => {
+    window.sessionStorage.setItem('restoreServicesScroll', 'true');
+  };
+
   return (
     <main className="bg-white text-black">
       {/* Header Section */}
@@ -93,7 +97,9 @@ export default function TechnicalSupportPage() {
         {/* Back to Services Button */}
         <div className="flex justify-center mt-24">
           <Link
-            href="/#services"
+            href="/"
+            scroll={false}
+            onClick={handleBackClick}
             className="group flex h-14 w-14 items-center overflow-hidden rounded-full bg-black px-4 text-white transition-[width,padding] duration-300 ease-out md:hover:w-[132px] md:hover:px-5"
           >
             <span className="flex w-6 shrink-0 items-center justify-center transition-transform duration-300 ease-out md:group-hover:-translate-x-0.5">
