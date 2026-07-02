@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import Footer from '@/components/sections/Footer';
+import PageHeader from '@/components/ui/PageHeader';
 
 const projectImages = [
   { src: '/images/system1.png', width: 1562, height: 791, description: 'Login & Registration portal interface' },
@@ -145,13 +146,7 @@ export default function SlatePage() {
 
   return (
     <main className="bg-white text-black">
-      <header className="sticky top-0 z-50 bg-white w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center">
-        <div className="text-3xl font-bold tracking-tighter text-black leading-tight">
-          Jazznelle
-          <br />
-          Vince
-        </div>
-      </header>
+      <PageHeader />
 
       <motion.section 
         className="w-full px-8 py-16 md:py-8 md:px-12 lg:px-24"

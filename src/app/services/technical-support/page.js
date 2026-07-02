@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import Footer from '@/components/sections/Footer';
+import PageHeader from '@/components/ui/PageHeader';
 
 // Animation variants for fading in elements
 const fadeIn = {
@@ -26,13 +27,7 @@ export default function TechnicalSupportPage() {
 
   return (
     <main className="bg-white text-black">
-      {/* Header Section */}
-      <header className="sticky top-0 z-50 bg-white w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center">
-        <div className="text-3xl font-bold tracking-tighter text-black leading-tight">
-          Jazznelle
-          <br />
-          Vince
-        </div>
+      <PageHeader mobileCollapsed>
         {/* Book a Schedule Button */}
         <Link 
           href="/#contact" 
@@ -54,7 +49,7 @@ export default function TechnicalSupportPage() {
             Book a schedule
           </span>
         </Link>
-      </header>
+      </PageHeader>
 
       {/* Main content section */}
       <motion.section 

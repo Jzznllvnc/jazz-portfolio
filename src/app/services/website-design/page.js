@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Footer from '@/components/sections/Footer';
+import PageHeader from '@/components/ui/PageHeader';
 
 const WebsiteDesignPage = () => {
   const handleBackClick = () => {
@@ -32,13 +33,7 @@ const WebsiteDesignPage = () => {
 
   return (
     <main className="bg-white text-black">
-       <header className="sticky top-0 z-50 bg-white w-full px-8 py-6 md:px-12 lg:px-24 flex justify-between items-center">
-        <div className="text-3xl font-bold tracking-tighter text-black leading-tight">
-          Jazznelle
-          <br />
-          Vince
-        </div>
-      </header>
+      <PageHeader />
 
       <section className="w-full px-8 py-16 md:py-8 md:px-12 lg:px-24 flex items-center min-h-[calc(100vh-200px)]">
         <motion.div 
